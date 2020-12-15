@@ -28,10 +28,10 @@ const Login = ({ dispatch }) => {
 
     return (
         <div className="loginBox">
-            <form className="loginBox" onSubmit={clickLogin}>
-                <div className="loginText">Iniciar sesión</div>
+            <form className="loginFrom" onSubmit={clickLogin}>
                 <input className="loginEmail" type="email" name="email" placeholder="Correo electrónico"></input>
                 <input className="loginPassword" type="password" name="password" placeholder="Contraseña"></input>
+                <button className="buttonlogin" type="primary" htmlType="submit">Login</button>
             </form>
         </div>
 

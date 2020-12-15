@@ -1,4 +1,10 @@
 .loginBox{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
+
+.loginForm{
     height: 40vh;
     width: 40vw;
     display: flex;

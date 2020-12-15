@@ -18,6 +18,7 @@ const Login = ({ dispatch }) => {
             let res = await axios.post('http://localhost:3000/user/login', body);
             let user = res.data;
             localStorage.setItem("user", JSON.stringify(user)); // Borrar más tarde
+            console.log(user)
 
             dispatch({ type: LOGIN, payload: res.data })
             history.push('/homepage')
@@ -28,10 +29,10 @@ const Login = ({ dispatch }) => {
 
     return (
         <div className="loginBox">
-            <form className="loginFrom" onSubmit={clickLogin}>
+            <form className="loginForm" onSubmit={clickLogin}>
                 <input className="loginEmail" type="email" name="email" placeholder="Correo electrónico"></input>
                 <input className="loginPassword" type="password" name="password" placeholder="Contraseña"></input>
-                <button className="buttonlogin" type="primary" htmlType="submit">Login</button>
+                <button className="buttonlogin" type="submit">Login</button>
             </form>
         </div>
 

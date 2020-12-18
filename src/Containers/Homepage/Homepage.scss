@@ -1,4 +1,4 @@
-.titleMain{
+/* .titleMain{
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -10,4 +10,70 @@
     flex-direction: column;
     justify-content: center;
     place-items: center;
+} */
+
+.homepage{
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7035189075630253) 51%, rgba(0,0,0,0.008841036414565795) 100%);
+    background-color: rgb(43, 42, 42);
+    height: 100vh;
+    width: 100vw;  // Cambiar a 100% más adelante
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    color: white;
+    
+}
+
+.TLContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 49%;
+    height: 60%;
+    margin: 1%;
+    
+    border: 0.3em solid white;
+
+}
+
+.calendar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 24%;
+    height: 60%;
+    margin: 1%;
+    border: 0.3em solid white;
+
+}
+
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 24%;
+    height: 60%;
+    margin: 1%;
+    border: 0.3em solid white;
+
+}
+
+
+.header{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    border: 0.2em solid red;
+    width: 100%;
+}
+
+.writepost{
+    border: 0.2em solid pink;
+    color: white;
 }

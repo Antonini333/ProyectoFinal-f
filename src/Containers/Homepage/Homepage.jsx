@@ -19,22 +19,27 @@ const Homepage = ({ dispatch, user, posts}) => {
 
     return (
         <div className='homepage'>
-            <div className='profile'></div>
-        <div className='TLContainer'>
+            <div className='mainContainer'>
 
+            <div className='profile'></div>
+
+        <div className='TLContainer'>
            <div className="header"><h2>What are people talking about?</h2></div>         
             <div className="posts">
                 {posts?.map(post =>
                     <div className="cardOrder" key={post._id}>
                         <div className="titleCard">{post.text}</div>
-                        
-                        
                     </div>)}
-            <div className="writepost">Escribe algo aquí</div>
+                    </div>
+            <div className="writePost">Escribe algo aquí</div>   
+            </div>    
+
+            <div className="calendar"></div> 
             </div>
-        </div>
-        <div className='calendar'></div>
-        </div>
+            </div>
+
+            
+            
     )
 }
 

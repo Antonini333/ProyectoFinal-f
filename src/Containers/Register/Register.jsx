@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Register.scss';
-import { connect } from 'react-redux';
 
 
 const Register = () => {
@@ -43,4 +42,4 @@ const Register = () => {
     )
 }
 
-export default connect()(Register);
+export default Register;

@@ -1,23 +1,18 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { CALL_POSTS } from '../../Redux/types';
+import { connect  } from 'react-redux';
+import { POSTS } from '../../Redux/types';
 import './Homepage.scss';
 
 
-const Homepage = () => {
+const Homepage = ({ dispatch, user, posts}) => {
 
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.user)
-    console.log(user)
-    const posts = useSelector(state => state.posts)
-    
 
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}`}};
         axios.get('http://localhost:3000/readallposts', options)
         
-            .then(posts => dispatch({ type: CALL_POSTS, payload: posts.data }))
+            .then(posts => dispatch({ type: POSTS, payload: posts.data }))
             .catch(error => console.log())
 
     }, [])
@@ -41,6 +36,14 @@ const Homepage = () => {
     )
 }
 
+const mapStateToProps = state => {
 
-export default Homepage;
+    return {
+        user: state.user,
+        posts: state.posts
+    }
+}
+
+
+export default connect(mapStateToProps)(Homepage);
 

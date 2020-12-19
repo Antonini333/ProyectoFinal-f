@@ -1,28 +1,15 @@
-/* .titleMain{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    place-items: center;
-}
 
-.posts{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    place-items: center;
-} */
 
 .homepage{
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7035189075630253) 51%, rgba(0,0,0,0.008841036414565795) 100%);
-    background-color: rgb(43, 42, 42);
-    height: 100vh;
+    background: linear-gradient(180deg, #c4c4bd7d 0%, #c4c4bd7d 51%,  #c4c4bd7d 100%);
+    background-color: #bea5a55e;
+    height: 100vh; 
     width: 100vw;  // Cambiar a 100% más adelante
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    color: white;
+    
     
 }
 
@@ -33,7 +20,6 @@
     flex-direction: row;
     height: 80%;
     width: 100%;
-    border: 0.3em solid pink;
 }
 
  .TLContainer{
@@ -42,10 +28,10 @@
     align-items: center;
     flex-direction: column;
     width: 49%;
-    height: 98%;
-    margin: 1%;
+    height: 105%;
+    margin: 4% 1% 1% 1%;
+    background-color: #bea5a55e;
     
-    border: 0.3em solid rgb(150, 21, 21);
 
 }
 
@@ -55,6 +41,7 @@
     height: 98%;
     margin: 1%;
     border: 0.3em solid white;
+    background-color: #ec94ca;
 
 }
 
@@ -64,33 +51,136 @@
     height: 98%;
     margin: 1%;
     border: 0.3em solid white;
+    background-color: #ec94ca;
 
 }
 
 
 .header{
     display: flex;
-    justify-content: start;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    border: 0.2em solid red;
+    background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
+    background-color: #d81e5b;
+    border: 0.2em solid #c50a49;
+    color: #29171df0;
+    border-radius: 0.5em;
     width: 100%;
     height:10%;
 }
 
 .posts{
     display: flex;
-    justify-content: start;
     align-items: center;
     flex-direction: column;
     border: 0.2em solid rgb(0, 183, 255);
     width: 100%;
-    height:75%;
+    background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
+    background-color: #d81e5b;
+    border: 0.3em solid #c50a49;
+    
 }
 
-.writePost{
-    border: 0.2em solid pink;
-    color: white;
+.newPostBox{
+    display: flex;
+    flex-direction: row;
+    color: #29171df0;
+    border-radius: 0.5em;
     width: 100%;
     height:15%;
+    margin-top: 3%;
+    background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
+    background-color: #d81e5b;
+    border: 0.3em solid #c50a49;
 } 
+.newPost{
+    width: 80%;
+    height:92%;
+    font-size: small;
+    border-radius: 0.2em;
+} 
+
+.newPostButton{
+    width: 20%;
+    height:100%;
+    border-radius: 0.5em;
+    background-color: #8a6672f0;
+}
+.cardPost{
+    display: flex;
+    flex-direction: column;
+    height:100%;
+    width: 95%;
+    margin: 1.5%;
+    border-radius: 0.5em;
+    padding: 0.125em;
+    font-size: small;
+    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #3b2852b4; 
+}
+
+.cardPostHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    height:20%;
+    width: 100%;
+    background-color: blue;
+    border-radius: 0.5em;
+
+}
+
+.cardPostText{
+    height:50%;
+    width: 100%;
+    padding: 1em;
+}
+
+.inputBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    
+    height:30%;
+    width:100%;
+    
+
+}
+
+
+.inputComment{
+    width: 80%;
+    height:100%;
+    margin-top: 0.1em;
+    font-size: small;
+
+    
+}
+
+.buttonBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 20%;
+    height: 100%;
+}
+
+.sendButton{
+    width: 100%;
+    height: 40%;
+    font-size: small;
+}
+
+.likeButton {
+    width: 100%;
+    height: 40%;
+    font-size: small;
+}
+
+
+
+
+
+
+
+

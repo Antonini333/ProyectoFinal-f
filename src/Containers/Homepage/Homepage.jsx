@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { connect  } from 'react-redux';
+import { connect } from 'react-redux';
 import { POSTS } from '../../Redux/types';
+import { Scrollbars } from 'rc-scrollbars'
 import './Homepage.scss';
 
 
-const Homepage = ({ dispatch, user, posts}) => {
+const Homepage = ({ dispatch, user, posts }) => {
 
 
     useEffect(() => {
-        const options = { headers: { Authorization: `Bearer ${user.token}`}};
+        const options = { headers: { Authorization: `Bearer ${user.token}` } };
         axios.get('http://localhost:3000/readallposts', options)
-        
+
             .then(posts => dispatch({ type: POSTS, payload: posts.data }))
             .catch(error => console.log())
 
@@ -21,25 +22,38 @@ const Homepage = ({ dispatch, user, posts}) => {
         <div className='homepage'>
             <div className='mainContainer'>
 
-            <div className='profile'></div>
+                <div className='profile'><h2>Your profile</h2></div>
 
-        <div className='TLContainer'>
-           <div className="header"><h2>What are people talking about?</h2></div>         
-            <div className="posts">
-                {posts?.map(post =>
-                    <div className="cardOrder" key={post._id}>
-                        <div className="titleCard">{post.text}</div>
-                    </div>)}
+                <div className='TLContainer'>
+                    <div className="header"><h2>What are people talking about?</h2></div>
+                    <Scrollbars style={{ width: 600, height: 400 }}>
+                        <div className="posts">
+                            {posts?.map(post =>
+                                <div className="cardPost" key={post._id}>
+                                    <div className="cardPostHeader">Escrito por: <b>{post.postedBy}</b></div>
+                                    <div className="cardPostText">{post.text}</div>
+                                    <div className="inputBox">
+                                        <textarea className="inputComment" type="textarea" name="comment" placeholder="Escribe algo..."></textarea>
+                                        <div className="buttonBox">
+                                            <button type="submit" className="likeButton">Like</button>
+                                            <button type="submit" className="sendButton">Comment</button>
+                                        </div>
+                                    </div>
+                                </div>)}
+                        </div>
+                    </Scrollbars>
+                    <div className="newPostBox">
+                    <textarea className="newPost" type="textarea" name="newPost" placeholder="¿En qué piensas?"></textarea>
+                    <button type="submit" className="newPostButton">Comparte</button>
                     </div>
-            <div className="writePost">Escribe algo aquí</div>   
-            </div>    
+                </div>
 
-            <div className="calendar"></div> 
+                <div className="calendar"><h2>Friends/Calendar</h2></div>
             </div>
-            </div>
+        </div>
 
-            
-            
+
+
     )
 }
 

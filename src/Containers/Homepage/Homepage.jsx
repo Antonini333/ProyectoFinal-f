@@ -7,6 +7,7 @@ import './Homepage.scss';
 
 
 const Homepage = ({ dispatch, user, posts }) => {
+    console.log(user)
 
 
     useEffect(() => {
@@ -17,6 +18,22 @@ const Homepage = ({ dispatch, user, posts }) => {
             .catch(error => console.log())
 
     }, [])
+
+    const handleSubmit = async (event) =>{
+        try{
+        event.preventDefault(); // Prevent the page from refreshing.
+        
+        const newPost={
+            text: event.target.text.value,
+            postedBy: user._id,    
+        };
+        const options = { headers: { Authorization: `Bearer ${user.token}` } };
+        axios.post('http://localhost:3000/post', newPost, options)
+        
+        }catch{
+         console.log('Falla');
+    }  
+}
 
     return (
         <div className='homepage'>
@@ -32,6 +49,7 @@ const Homepage = ({ dispatch, user, posts }) => {
                                 <div className="cardPost" key={post._id}>
                                     <div className="cardPostHeader">Escrito por: <b>{post.postedBy}</b></div>
                                     <div className="cardPostText">{post.text}</div>
+                                    <form>
                                     <div className="inputBox">
                                         <textarea className="inputComment" type="textarea" name="comment" placeholder="Escribe algo..."></textarea>
                                         <div className="buttonBox">
@@ -39,13 +57,17 @@ const Homepage = ({ dispatch, user, posts }) => {
                                             <button type="submit" className="sendButton">Comment</button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>)}
                         </div>
                     </Scrollbars>
-                    <div className="newPostBox">
+                    <form onSubmit={handleSubmit}>       
+                                    <div className="newPostBox">
                     <textarea className="newPost" type="textarea" name="newPost" placeholder="¿En qué piensas?"></textarea>
                     <button type="submit" className="newPostButton">Comparte</button>
                     </div>
+                    </form>
+
                 </div>
 
                 <div className="calendar"><h2>Friends/Calendar</h2></div>

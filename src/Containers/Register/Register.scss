@@ -1,0 +1,56 @@
+.mainregister{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-image: url("https://khn.org/wp-content/uploads/sites/2/2019/08/GettyImages-928088582.jpg?w=1024");
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    
+}
+.registerBox {
+    display:flex;
+    flex-direction: column;
+    place-items: center;
+    width: 30%;
+    height: 70%;
+    size: medium;
+    border: 0.3em solid rgba(64, 1, 96, 0.685);
+    border-radius: 1.5em;
+    box-shadow: inset 0.063em 0.063em 9em 1.5em #414c70fa; 
+
+}
+
+.titleRegister{
+    display:flex;
+    flex-direction: column;
+    place-items: center;
+    height: 15%;
+    margin: 2% 1% 1% 2%;
+    line-height: 2em;
+    color: white;
+
+}
+
+.inputText{
+
+    width: 80%;
+    height: 1.8em;
+    margin: 2% 1% 2% 8%;
+    border: 0.3em solid¡ rgba(43, 1, 66, 0.934);
+    border-radius: 1em;
+    padding-left: 1em;
+}
+
+
+.buttonRegister{
+    width: 85%;
+    height: 3em;
+    margin: 4% 1% 0% 8%;
+    border-radius: 1em;
+    background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
+    background-color: #d81eb397;
+    border: 0.3em solid #c50a4877;
+}

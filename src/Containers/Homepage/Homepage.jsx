@@ -7,7 +7,6 @@ import './Homepage.scss';
 
 
 const Homepage = ({ dispatch, user, posts }) => {
-    console.log(user)
 
 
     useEffect(() => {

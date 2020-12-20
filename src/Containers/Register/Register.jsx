@@ -39,7 +39,7 @@ const Register = () => {
                 <Input className="inputText" type="password" name="password" placeholder="Password"/>
                 <Input className="inputText" type="age" name="age" placeholder="Age"/>
                 <Input className="inputText" type="address" name="address" placeholder="Address"/>
-                <button className="buttonRegister" type="submit">Register</button>
+                <button className="buttonRegister" type="submit"><h3>Sign up</h3></button>
             </form>
             <div className="alreadyRegistered">¿Already registered? 
             <Link className="linkToLogin"to='/login'><b>¡Sign In!</b></Link></div>

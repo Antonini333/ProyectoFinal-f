@@ -40,7 +40,7 @@ const Login = ({ dispatch }) => {
                 <Input className="inputLogin" type="email" name="email" placeholder="Correo electrónico"/>
                 <Input className="inputLogin" type="password" name="password" placeholder="Contraseña"/>
 
-                <button className="buttonLogin" type="submit">Register</button>
+                <button className="buttonLogin" type="submit"><h3>Let's start!</h3></button>
             </form>
         </div>
         <div></div>

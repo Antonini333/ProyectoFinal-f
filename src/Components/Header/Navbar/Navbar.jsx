@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Nav, NavLink, NavMenu, Bars, NavBtn, NavBtnLink } from 'react-router-dom'
 
 
 function Navbar() {
@@ -22,7 +22,7 @@ function Navbar() {
                 </NavLink>
             </NavMenu>
             <NavBtn>
-                <NabBtnLink to="/login">Logout</NabBtnLink>
+                <NavBtnLink to="/login">Logout</NavBtnLink>
             </NavBtn>
         </Nav>
         </>

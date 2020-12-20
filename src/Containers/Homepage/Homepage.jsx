@@ -42,7 +42,7 @@ const Homepage = ({ dispatch, user, posts }) => {
 
                 <div className='TLContainer'>
                     <div className="header"><h2>What are people talking about?</h2></div>
-                    <Scrollbars style={{ width: 600, height: 400 }}>
+                    <Scrollbars style={{ width: 940, height: 400 }}>
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
@@ -71,7 +71,7 @@ const Homepage = ({ dispatch, user, posts }) => {
 
                 </div>
 
-                <div className="calendar"><h2>Friends/Calendar</h2></div>
+                <div className="calendar"><h2></h2></div>
             </div>
         </div>
 

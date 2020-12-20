@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, NavLink, NavMenu, Bars, NavBtn, NavBtnLink } from 'react-router-dom'
+import { Nav, NavLink, NavMenu, Bars, NavBtn, NavBtnLink } from './NavbarElements'
 
 
 function Navbar() {

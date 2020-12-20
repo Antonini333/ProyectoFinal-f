@@ -46,11 +46,11 @@ const Homepage = ({ dispatch, user, posts }) => {
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
-                                    <div className="cardPostHeader">Escrito por: <b>{post.postedBy}</b></div>
+                                    <div className="cardPostHeader">Posted by: <b>{post.postedBy}</b></div>
                                     <div className="cardPostText">{post.text}</div>
                                     <form>
                                     <div className="inputBox">
-                                        <textarea className="inputComment" type="textarea" name="comment" placeholder="Escribe algo..."></textarea>
+                                        <textarea className="inputComment" type="textarea" name="comment" placeholder="Share your opinion"></textarea>
                                         <div className="buttonBox">
                                             <button type="submit" className="likeButton">Like</button>
                                             <button type="submit" className="sendButton">Comment</button>
@@ -60,12 +60,14 @@ const Homepage = ({ dispatch, user, posts }) => {
                                 </div>)}
                         </div>
                     </Scrollbars>
+                    <div className="newPostBox">
                     <form onSubmit={handleSubmit}>       
-                                    <div className="newPostBox">
-                    <textarea className="newPost" type="textarea" name="newPost" placeholder="¿En qué piensas?"></textarea>
-                    <button type="submit" className="newPostButton">Comparte</button>
-                    </div>
+                                    
+                    <textarea className="newPost" type="textarea" name="newPost" placeholder="And you? What you're thinking about?"></textarea>
+                    <button type="submit" className="newPostButton"><h3>Share your wisdom</h3></button>
+                    
                     </form>
+                    </div>
 
                 </div>
 

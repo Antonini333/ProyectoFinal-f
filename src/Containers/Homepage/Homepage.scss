@@ -2,7 +2,7 @@
 
 .homepage{
     height: 100vh; 
-    width: 100vw;  // Cambiar a 100% más adelante
+    width: 99w;  // Cambiar a 100% más adelante
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,8 +19,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 80%;
+    height: 70%;
     width: 100%;
+    margin-top: -12%;
 }
 
  .TLContainer{
@@ -37,7 +38,7 @@
 
 .calendar{
     
-    width: 24%;
+    width: 20%;
     height: 80%;
     margin: 6% 1% 0% 1%;
     border: 0.3em solid white;
@@ -47,7 +48,7 @@
 
 .profile{
     
-    width: 24%;
+    width: 20%;
     height: 80%;
     margin: 6% 1% 0% 1%;
     border: 0.3em solid white;

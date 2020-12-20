@@ -1,0 +1,29 @@
+.headerNav{
+    background-color: green;
+    height: 9.2vh;
+    background-image: linear-gradient(to left,  rgb(179, 13, 170), rgb(31, 182, 247));
+    margin-top: -1em;
+    
+}
+
+.imgLogoHeader {
+    width: 9em;
+    height: 3.6em;
+    margin-left: -8em;
+}
+
+.logoBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menuCenter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1em;
+
+    
+}

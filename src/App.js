@@ -4,7 +4,6 @@ import { BrowserRouter , Route } from 'react-router-dom';
 import Homepage from './Containers/Homepage/Homepage';
 import Register from './Containers/Register/Register';
 import Navbar from './Components/Navbar/Navbar'
-
 import './App.css';
 
 function App() {
@@ -19,6 +18,7 @@ function App() {
     </Route>
 
     <Route path= "/homepage" exact>
+      <Navbar/>
       <Homepage/> 
     </Route>
     </BrowserRouter>

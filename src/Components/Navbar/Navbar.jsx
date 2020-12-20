@@ -1,32 +1,47 @@
-import React from 'react'
-import { Nav, NavLink, NavMenu, Bars, NavBtn, NavBtnLink } from './NavbarElements'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import './Navbar.scss';
 
+const Navbar = () => {
 
-function Navbar() {
+    const user = useSelector(state => state.user)
+
+    const logout = async (event) => {
+
+        try {
+            const options = { headers: { Authorization: `Bearer ${user.token}` } };
+
+            await axios.get('http://localhost:3000/user/logout', options);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <>
-        <Nav>
-            <NavLink to="/">
-                <h1>Logo</h1>
-            </NavLink>
-            <Bars />
-            <NavMenu>
-                <NavLink to="/about" activeStyle>
-                    About
-                </NavLink>
-                <NavLink to="/services" activeStyle>
-                    Services
-                </NavLink>
-                <NavLink to="/people" activeStyle>
-                    People
-                </NavLink>
-            </NavMenu>
-            <NavBtn>
-                <NavBtnLink to="/login">Logout</NavBtnLink>
-            </NavBtn>
-        </Nav>
+
+            <div className='headerNav'>
+                <div className='menuCenter'>
+
+                    <div className="logoBox">
+                        <img className="imgLogoHeader" src="https://www.clasesdeperiodismo.com/wp-content/uploads/2015/04/ideas.png" alt="logo"></img><h2>WisdomShare</h2>
+                    </div>
+                    <Link to='/profile'>My Profile</Link>
+                    <Link to='/people'>People</Link>
+
+                    {<Link to='/' onClick={logout}>Cerrar sesión</Link>}
+                </div>
+
+
+
+            </div>
+
         </>
     )
+
 }
 
-export default Navbar
+export default Navbar;

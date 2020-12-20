@@ -3,7 +3,7 @@ import Login from './Containers/Login/Login';
 import { BrowserRouter , Route } from 'react-router-dom';
 import Homepage from './Containers/Homepage/Homepage';
 import Register from './Containers/Register/Register';
-import Header from './Components/Header/Header'
+import Navbar from './Components/Navbar/Navbar'
 
 import './App.css';
 

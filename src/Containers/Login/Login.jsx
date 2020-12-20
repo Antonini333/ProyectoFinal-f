@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Login.scss';
+import { Input } from 'antd';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../Redux/types';
 
@@ -28,15 +29,25 @@ const Login = ({ dispatch }) => {
     }
 
     return (
+        <div className="mainlogin">
+            <div></div>
         <div className="loginBox">
-            <form className="loginForm" onSubmit={clickLogin}>
-                <input className="loginEmail" type="email" name="email" placeholder="Correo electrónico"></input>
-                <input className="loginPassword" type="password" name="password" placeholder="Contraseña"></input>
-                <button className="buttonlogin" type="submit">Login</button>
+             <div className="titleLogin"><h2>Welcome to WisdomShare</h2>
+            <div><h3> For the sake of learn</h3></div>
+             <div><h3> For the sake of care</h3></div>
+             ¡Share your wisdom!</div>
+            <form className="registerForm" onSubmit={clickLogin}>
+                <Input className="inputLogin" type="email" name="email" placeholder="Correo electrónico"/>
+                <Input className="inputLogin" type="password" name="password" placeholder="Contraseña"/>
+
+                <button className="buttonLogin" type="submit">Register</button>
             </form>
+        </div>
+        <div></div>
         </div>
 
     )
 }
+
 
 export default connect()(Login);

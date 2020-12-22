@@ -30,25 +30,18 @@
     align-items: center;
     flex-direction: column;
     width: 80%;
-    height: 100%;
+    height: 110%;
     margin: 6% 1% 1% 1%;
     
 
 }
 
-.calendar{
-    
-    width: 1%;
-    height: 80%;
-    margin: 6% 1% 0% 1%;
-
-}
 
 .profile{
     
-    width: 20%;
-    height: 80%;
-    margin: 6% 1% 0% 1%;
+    width: 25%;
+    height: 100%;
+    margin: 6% 1.5% 0% 1%;
     border: 0.3em solid white;
     background-color: #ec94ca;
 
@@ -67,6 +60,7 @@
     border-radius: 0.5em;
     width: 100%;
     height:10%;
+    margin-left: -2%;
 }
 
 .posts{
@@ -83,10 +77,10 @@
     
 }
 
-.newPostBox{
+.newPostBox{    
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: center;
     color: #29171df0;
     border-radius: 0.3em;
     width: 97%;
@@ -94,24 +88,31 @@
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
     background-color: #d81e5b;
     border: 0.5em solid #c50a488c;
-    margin-right: 2.2% ;
+    margin-left: -2%;
+    
 } 
 
 
 .newPost{
-    width: 47.9em;
-    height:5em;
+    width: 50em;
+    height:4.5em;
     border-radius: 0.2em;
     font-size: small;
+    margin-top: 1%;
 } 
 
 .newPostButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+justify-content: center;
     width: 100%;
-    height:2.2em;
+    height:2em;
     border-radius: 0.5em;
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #74018a 100%);
     background-color: #8a6672f0;
-    border: 0.1em solid #c50a48a9;        
+    border: 0.1em solid #c50a48a9;
+    margin-bottom: 1%;        
     
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { POSTS } from '../../Redux/types';
@@ -7,8 +7,8 @@ import './Homepage.scss';
 
 
 const Homepage = ({ dispatch, user, posts }) => {
-
-
+    
+    
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
         axios.get('http://localhost:3000/readallposts', options)
@@ -16,11 +16,13 @@ const Homepage = ({ dispatch, user, posts }) => {
             .then(posts => dispatch({ type: POSTS, payload: posts.data }))
             .catch(error => console.log())
 
-    }, [])
+    }, []);
 
-    const handleSubmit = async (event) =>{
+    
+
+    const submitPost = async (event) =>{
         try{
-        event.preventDefault(); // Prevent the page from refreshing.
+
         
         const newPost={
             text: event.target.text.value,
@@ -29,9 +31,20 @@ const Homepage = ({ dispatch, user, posts }) => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
         axios.post('http://localhost:3000/post', newPost, options)
         
-        }catch{
-         console.log('Falla');
-    }  
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const submitLike = async (_id) =>{
+   
+    try{
+    const options = localStorage.getItem('user');/* { headers: { Authorization: `Bearer ${user.token}` } }; */
+    await axios.put('http://localhost:3000/likepost/'+ _id, options);
+    
+} catch (error) {
+    console.log(error);
+}
 }
 
     return (
@@ -42,7 +55,7 @@ const Homepage = ({ dispatch, user, posts }) => {
 
                 <div className='TLContainer'>
                     <div className="header"><h2>What are people talking about?</h2></div>
-                    <Scrollbars style={{ width: 940, height: 400 }}>
+                    <Scrollbars style={{ width: 1000, height: 400 }}>
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
@@ -52,7 +65,7 @@ const Homepage = ({ dispatch, user, posts }) => {
                                     <div className="inputBox">
                                         <textarea className="inputComment" type="textarea" name="comment" placeholder="Share your opinion"></textarea>
                                         <div className="buttonBox">
-                                            <button type="submit" className="likeButton">Like</button>
+                                            <button type="submit" className="likeButton"  onClick={()=> {submitLike(post._id)}}>Like</button>
                                             <button type="submit" className="sendButton">Comment</button>
                                         </div>
                                     </div>
@@ -61,17 +74,15 @@ const Homepage = ({ dispatch, user, posts }) => {
                         </div>
                     </Scrollbars>
                     <div className="newPostBox">
-                    <form onSubmit={handleSubmit}>       
+                    <form onSubmit={submitPost}>       
                                     
-                    <textarea className="newPost" type="textarea" name="newPost" placeholder="And you? What you're thinking about?"></textarea>
+                    <textarea className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
                     <button type="submit" className="newPostButton"><h3>Share your wisdom</h3></button>
                     
                     </form>
                     </div>
 
                 </div>
-
-                <div className="calendar"><h2></h2></div>
             </div>
         </div>
 

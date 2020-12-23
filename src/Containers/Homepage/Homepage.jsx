@@ -85,8 +85,8 @@ const submitLike = async (_id) =>{
                                     
                                         <textarea className="inputComment" type="text" name="text" placeholder="Share your opinion"></textarea>
                                         
-                                            <button type="submit" className="likeButton"  onClick={()=> {submitLike(post._id)}}>Like</button>
-                                            <button type="submit" className="sendButton">Comment</button>
+                            <button type="submit" className="likeButton"  onClick={()=> {submitLike(post._id)}}>Like ({post.likeCount})</button>
+                                            <button type="submit" className="sendButton">Comment ({post.commemntCount})</button>
                                         
                                         </form>
                                     </div>

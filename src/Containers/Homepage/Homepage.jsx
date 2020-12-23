@@ -70,9 +70,9 @@ const Homepage = ({ dispatch, user, posts }) => {
             <div className='mainContainer'>
 
                 <div className='profile'>
-                 <div className="headerProfile"><h2>My Profile</h2></div>   
-                <div className='photoProfile'></div>
-                <div className='infoProfile'><h4><div>Name: {user.name}</div><div>Surname: {user.surname}</div><div>Age: {user.age}</div><div>Address:{user.address}</div><div>Bio:{user.bio}</div></h4></div>
+                    <div className="headerProfile"><h2>My Profile</h2></div>
+                    <div className='photoProfile'></div>
+                    <div className='infoProfile'><h4><div>Name: {user.name}</div><div>Surname: {user.surname}</div><div>Age: {user.age}</div><div>Address:{user.address}</div><div>Bio:{user.bio}</div></h4></div>
                 </div>
 
                 <div className='TLContainer'>
@@ -88,8 +88,8 @@ const Homepage = ({ dispatch, user, posts }) => {
 
                                             <textarea className="inputComment" type="text" name="text" placeholder="Share your opinion"></textarea>
                                             <button type="submit" className="commentButton">Comment ({post.commentCount})</button>
-                                        
-                                        <button className="likeButton" onClick={()=> {submitLike(post._id)}} >Like ({post.likeCount})</button>
+
+                                            <button className="likeButton" onClick={() => { submitLike(post._id) }} >Like ({post.likeCount})</button>
                                         </form>
                                     </div>
 

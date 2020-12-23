@@ -1,8 +1,6 @@
-
-
-.people{
-    height: 100vh; 
-    width: 99vw;  // Cambiar a 100% más adelante
+.people {
+    height: 100vh;
+    width: 99vw; // Cambiar a 100% más adelante
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,11 +8,11 @@
     background-image: url("https://khn.org/wp-content/uploads/sites/2/2019/08/GettyImages-928088582.jpg?w=1024");
     background-size: cover;
     background-position: center;
-    
-    
+
+
 }
 
-.usersContainer{
+.usersContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -25,81 +23,77 @@
     margin-top: -10%;
 
 
-    
+
 }
 
-.userCard{    
+.userCard {
     display: flex;
     flex-direction: row;
     align-items: center;
     color: #29171df0;
     border-radius: 0.3em;
     width: 97%;
-    height:30%;
+    height: 30%;
     margin-bottom: 2%;
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
     background-color: #d81e5b;
-    border: 0.5em solid #c50a488c;    
-} 
+    border: 0.5em solid #c50a488c;
+}
 
 .userCardPhoto {
-    height:90%;
+    height: 90%;
     border: 0.2em solid black;
     width: 10%;
     margin: 0 3% 0 1%;
 }
+.userCardBio{
+    margin-left: 5%;
+}
 
-.followBox{
-margin-left: 3%;
+.followBox {
+    margin-left: 3%;
 }
 
 .followButton {
- height: 3.5em;
- border-radius: 50%;
- background-image: linear-gradient(to left,  rgb(179, 13, 170), rgb(78, 167, 206));
- border: 0.3em solid #392a8bf5;
- font-size: medium;
+    height: 3.5em;
+    border-radius: 50%;
+    background-image: linear-gradient(to left, rgb(179, 13, 170), rgb(78, 167, 206));
+    border: 0.3em solid #392a8bf5;
+    font-size: medium;
 }
 
 
-.newPost{
+.newPost {
     width: 50em;
-    height:4.5em;
+    height: 4.5em;
     border-radius: 0.2em;
     font-size: small;
     margin-top: 1%;
-} 
+}
 
-.newPostButton{
+.newPostButton {
     display: flex;
     flex-direction: row;
     align-items: center;
-justify-content: center;
+    justify-content: center;
     width: 100%;
-    height:2em;
+    height: 2em;
     border-radius: 0.5em;
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #74018a 100%);
     background-color: #8a6672f0;
     border: 0.1em solid #c50a48a9;
-    margin-bottom: 1%;        
-    
+    margin-bottom: 1%;
+
 }
 
-.cardPost{
+.cardPost {
     display: flex;
     flex-direction: column;
-    height:100%;
+    height: 100%;
     width: 95%;
     margin: 1.5%;
     border-radius: 0.5em;
     padding: 0.125em;
     font-size: small;
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #3b2852b4; 
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #3b2852b4;
 }
-
-
-
-
-
-
-

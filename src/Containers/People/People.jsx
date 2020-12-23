@@ -31,23 +31,23 @@ const People = ({ dispatch, user, users }) => {
 
     return (
         <div className='people'>
-                        <div className="usersContainer">
-                        <Scrollbars style={{ width: 1200, height: 425 }}>
-                            {users?.map(user =>
-                                <div className="userCard" key={user._id}>
-                                    <div className="userCardPhoto"></div>
+            <div className="usersContainer">
+                <Scrollbars style={{ width: 1200, height: 425 }}>
+                    {users?.map(user =>
+                        <div className="userCard" key={user._id}>
+                            <div className="userCardPhoto"></div>
                             <div className="userCardName"><b>{user.name}  {user.surname},</b></div> &nbsp;
                                     <div className="userCardAge">{user.age}</div>
-                                    <div className="followBox">
+                            <div className="followBox">
 
-                                        <button className="followButton" onClick={()=> {followUser(user._id)}} >+ Follow</button>
-                                    </div>
+                                <button className="followButton" onClick={() => { followUser(user._id) }} >+ Follow</button>
+                            </div>
+                            <div className="userCardBio">Bio: {user.bio}</div>
+                        </div>)}
 
-                                </div>)}
-
-                    </Scrollbars>
-                        </div>
-                </div>
+                </Scrollbars>
+            </div>
+        </div>
 
 
 

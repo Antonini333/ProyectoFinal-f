@@ -39,13 +39,14 @@ const Homepage = ({ dispatch, user, posts }) => {
 const submitLike = async (_id) =>{
    
     try{
-    const options = localStorage.getItem('user');/* { headers: { Authorization: `Bearer ${user.token}` } }; */
+    const options = { headers: { Authorization: `Bearer ${user.token}` } };
     await axios.put('http://localhost:3000/likepost/'+ _id, options);
     
 } catch (error) {
     console.log(error);
 }
 }
+
 
     return (
         <div className='homepage'>

@@ -8,8 +8,8 @@ import { Input } from 'antd';
 const Register = () => {
 
     const clickRegister = async (event) => {
+        event.preventDefault();
         try {
-            event.preventDefault();
             const body = {
                 name: event.target.name.value,
                 surname: event.target.surname.value,

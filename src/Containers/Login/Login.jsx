@@ -10,8 +10,9 @@ import { LOGIN } from '../../Redux/types';
 const Login = ({ dispatch }) => {
     const history = useHistory();
     const clickLogin = async (event) => {
+        event.preventDefault();
         try {
-            event.preventDefault();
+            
             const body = {
                 email: event.target.email.value,
                 password: event.target.password.value

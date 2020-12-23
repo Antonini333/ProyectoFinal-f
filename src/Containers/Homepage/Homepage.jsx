@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { POSTS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars'
+import {notification} from 'antd';
 import './Homepage.scss';
 
 
@@ -20,7 +21,8 @@ const Homepage = ({ dispatch, user, posts }) => {
 
     
 
-    const submitPost = async (event) =>{
+    const submitPost = async (event) =>{   //Funciona, pero sin rerenderizado de Posts (¿useState? ¿dispatch en posts?)
+        event.preventDefault();
         try{
 
         
@@ -29,11 +31,27 @@ const Homepage = ({ dispatch, user, posts }) => {
             postedBy: user._id,    
         };
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
-        axios.post('http://localhost:3000/post', newPost, options)
-        
+        await axios.post('http://localhost:3000/post', newPost, options);
+                
     } catch (error) {
         console.log(error);
     }
+}
+
+const commentPost = async (event) =>{   //Funciona, pero sin rerenderizado de Posts (¿useState? ¿dispatch en posts?)
+    event.preventDefault();
+    try{
+
+    const newComment={
+        text: event.target.text.value,
+        postedBy: user._id,    
+    };
+    const options = { headers: { Authorization: `Bearer ${user.token}` } };
+    await axios.put('http://localhost:3000/commentpost/' + event, newComment, options);
+            
+} catch (error) {
+    console.log(error);
+}
 }
 
 const submitLike = async (_id) =>{
@@ -62,15 +80,17 @@ const submitLike = async (_id) =>{
                                 <div className="cardPost" key={post._id}>
                                     <div className="cardPostHeader">Posted by: <b>{post.postedBy}</b></div>
                                     <div className="cardPostText">{post.text}</div>
-                                    <form>
                                     <div className="inputBox">
-                                        <textarea className="inputComment" type="textarea" name="comment" placeholder="Share your opinion"></textarea>
-                                        <div className="buttonBox">
+                                    <form onSubmit={commentPost}>
+                                    
+                                        <textarea className="inputComment" type="text" name="text" placeholder="Share your opinion"></textarea>
+                                        
                                             <button type="submit" className="likeButton"  onClick={()=> {submitLike(post._id)}}>Like</button>
                                             <button type="submit" className="sendButton">Comment</button>
-                                        </div>
+                                        
+                                        </form>
                                     </div>
-                                    </form>
+
                                 </div>)}
                         </div>
                     </Scrollbars>

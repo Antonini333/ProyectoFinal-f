@@ -72,12 +72,12 @@ const Homepage = ({ dispatch, user, posts }) => {
                 <div className='profile'>
                  <div className="headerProfile"><h2>My Profile</h2></div>   
                 <div className='photoProfile'></div>
-                <div className='infoProfile'></div>
+                <div className='infoProfile'><h4><div>Name: {user.name}</div><div>Surname: {user.surname}</div><div>Age: {user.age}</div><div>Address:{user.address}</div><div>Bio:{user.bio}</div></h4></div>
                 </div>
 
                 <div className='TLContainer'>
                     <div className="header"><h2>What are people talking about?</h2></div>
-                    <Scrollbars style={{ width: 1000, height: 400 }}>
+                    <Scrollbars style={{ width: 1000, height: 450 }}>
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
@@ -87,9 +87,10 @@ const Homepage = ({ dispatch, user, posts }) => {
                                         <form onSubmit={commentPost}>
 
                                             <textarea className="inputComment" type="text" name="text" placeholder="Share your opinion"></textarea>
-                                            <button type="submit" className="sendButton">Comment ({post.commentCount})</button>
-                                        </form>
+                                            <button type="submit" className="commentButton">Comment ({post.commentCount})</button>
+                                        
                                         <button className="likeButton" onClick={()=> {submitLike(post._id)}} >Like ({post.likeCount})</button>
+                                        </form>
                                     </div>
 
                                 </div>)}

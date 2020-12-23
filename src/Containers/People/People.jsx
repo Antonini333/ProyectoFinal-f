@@ -22,15 +22,12 @@ const People = ({ dispatch, user, users }) => {
 
         try {
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.put('http://localhost:3000/likepost/' + _id, options);
+            await axios.put('http://localhost:3000/user/follow' + _id, options);
 
         } catch (error) {
             console.log(error);
         }
     }
-
-    console.log(users)
-
 
     return (
         <div className='people'>
@@ -38,11 +35,12 @@ const People = ({ dispatch, user, users }) => {
                         <Scrollbars style={{ width: 1200, height: 425 }}>
                             {users?.map(user =>
                                 <div className="userCard" key={user._id}>
-                                    <div className="userCardName">name: <b>{user.name}</b></div>
-                                    <div className="userCardSurname">{user.surname}</div>
+                                    <div className="userCardPhoto"></div>
+                            <div className="userCardName"><b>{user.name}  {user.surname},</b></div> &nbsp;
+                                    <div className="userCardAge">{user.age}</div>
                                     <div className="followBox">
 
-                                        <button className="followButton" onClick={()=> {followUser(user._id)}} >Follow</button>
+                                        <button className="followButton" onClick={()=> {followUser(user._id)}} >+ Follow</button>
                                     </div>
 
                                 </div>)}

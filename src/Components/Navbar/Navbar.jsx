@@ -29,7 +29,7 @@ const Navbar = () => {
                     <div className="logoBox">
                         <img className="imgLogoHeader" src="https://www.clasesdeperiodismo.com/wp-content/uploads/2015/04/ideas.png" alt="logo"></img><h2>WisdomShare</h2>
                     </div>
-                    <Link to='/homepage'>News</Link>
+                    <Link to='/homepage'>Home</Link>
                     <Link to='/people'>People</Link>
 
                     {<Link to='/' onClick={logout}>Logout</Link>}

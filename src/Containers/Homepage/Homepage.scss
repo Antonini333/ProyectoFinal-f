@@ -38,13 +38,31 @@
 
 
 .profile{
-    
+    display: flex;
+    flex-direction: column;
     width: 25%;
     height: 100%;
     margin: 6% 1.5% 0% 1%;
     border: 0.3em solid white;
     background-color: #ec94ca;
 
+}
+.headerProfile{
+    display: flex;
+    justify-content: center;
+    margin: 1%;
+}
+
+.photoProfile{
+    border: 0.2em solid black;
+    height: 40%;
+    margin: 2% 10% 2% 10%;
+    border-radius: 50%;
+}
+
+.infoProfile{
+    border: 0.2em solid black;
+    height: 60%;
 }
 
 

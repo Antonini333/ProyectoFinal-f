@@ -13,7 +13,7 @@ const Navbar = () => {
         try {
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
 
-            await axios.get('http://localhost:3000/user/logout', options);
+            await axios.post('http://localhost:3000/user/logout', options);
 
         } catch (error) {
             console.log(error);
@@ -29,10 +29,10 @@ const Navbar = () => {
                     <div className="logoBox">
                         <img className="imgLogoHeader" src="https://www.clasesdeperiodismo.com/wp-content/uploads/2015/04/ideas.png" alt="logo"></img><h2>WisdomShare</h2>
                     </div>
-                    <Link to='/profile'>My Profile</Link>
+                    <Link to='/homepage'>News</Link>
                     <Link to='/people'>People</Link>
 
-                    {<Link to='/' onClick={logout}>Cerrar sesión</Link>}
+                    {<Link to='/' onClick={logout}>Logout</Link>}
                 </div>
 
 

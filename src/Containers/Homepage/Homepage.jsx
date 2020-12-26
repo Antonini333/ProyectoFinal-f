@@ -104,24 +104,15 @@ const Homepage = ({ dispatch, user }) => {
 
 
 
-    const submitLikee = async (_id) => {
-        try {
-            const options = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.put('http://localhost:3000/likepost/' + _id, options);
-            await axios.get('http://localhost:3000/readallposts', options)
-        } catch { }
-
-    }
-
-
     return (
         <div className='homepage'>
             <div className='mainContainer'>
 
                 <div className='profile'>
                     <div className="headerProfile"><h2>My Profile</h2></div>
-                    <div className='photoProfile'></div>
-                    <div className='infoProfile'><h4><div>Name: {user.name}</div><div>Surname: {user.surname}</div><div>Age: {user.age}</div><div>Address:{user.address}</div><div>Bio:{user.bio}</div></h4></div>
+    <div className='photoProfile'>
+        <img src={user.photo}></img></div>
+                    <div className='infoProfile'><h4><div>{user.name}&nbsp; {user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div><div>"{user.bio}"</div></h4></div>
                 </div>
 
                 <div className='TLContainer'>
@@ -137,8 +128,9 @@ const Homepage = ({ dispatch, user }) => {
                                             e.preventDefault()
                                             makeComment(e.target[0].value, post._id)
                                         }}>
-                                            <input type="text" placeholder="Add a comment " />
+                                            <input type="text" placeholder="Hit enter to add a comment " />
                                         </form>
+                                        
 
                                         <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} >Like ({post.likeCount})</button>
 

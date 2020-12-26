@@ -22,7 +22,7 @@ const Homepage = ({ dispatch, user }) => {
 
 
 
-    const submitPost = async (event) => {   //Funciona, pero sin rerenderizado de Posts (¿useState? ¿dispatch en posts?)
+    const submitPost = async (event) => {   
         event.preventDefault();
 
 
@@ -41,31 +41,42 @@ const Homepage = ({ dispatch, user }) => {
               })
             }
 
-    const commentPost = async (event) => {   //Funciona, pero sin rerenderizado de Posts (¿useState? ¿dispatch en posts?)
-        event.preventDefault();
-        try {
+            const makeComment = (text,_id)=>{
+                axios('http://localhost:3000/commentpost/' + _id
+                ,{
+                    method:"put",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "Authorization":`Bearer ${user.token}`
+                    },
+                    data: JSON.stringify({
 
-            const newComment = {
-                text: event.target.text.value,
-                postedBy: user._id,
-            };
-            const options = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.put('http://localhost:3000/commentpost/' + event, newComment, options);
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+                        text: text
+                    })
+                })
+                .then(result=>{
+                    console.log(result)
+                    const newPost = posts.map(post=>{
+                      if(post._id===result._id){
+                          return result
+                      }else{
+                          return post
+                      }
+                   })
+                  setPosts(newPost)
+                }).catch(err=>{
+                    console.log(err)
+                })
+          }
+      
+ 
     const submitLike = async (_id) => {
-
-        try {
+        try{
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
             await axios.put('http://localhost:3000/likepost/' + _id, options);
-
-        } catch (error) {
-            console.log(error);
-        }
+            await axios.get('http://localhost:3000/readallposts', options)
+        }catch {}
+        
     }
 
 
@@ -88,13 +99,20 @@ const Homepage = ({ dispatch, user }) => {
                                     <div className="cardPostHeader">Posted by: <b>{post.postedBy}</b></div>
                                     <div className="cardPostText">{post.text}</div>
                                     <div className="inputBox">
-                                        <form onSubmit={commentPost}>
+                                    <form onSubmit={(e)=>{
+                                    e.preventDefault()
+                                    makeComment(e.target[0].value,post._id)
+                                }}>
+                                  <input type="text" placeholder="add a comment" />  
+                                </form>
+                                        
+                                        {/* <form onSubmit ={commentPost(post._id)}>
 
-                                            <textarea className="inputComment" type="text" name="text" placeholder="Share your opinion"></textarea>
+                                            <textarea className="inputComment" type="text" name="text2" placeholder="Share your opinion"></textarea>
                                             <button type="submit" className="commentButton">Comment ({post.commentCount})</button>
 
-                                            <button className="likeButton" onClick={() => { submitLike(post._id) }} >Like ({post.likeCount})</button>
-                                        </form>
+                                            <button type="button" className="likeButton" onClick={() => {submitLike(post._id)}} >Like ({post.likeCount})</button>
+                                        </form> */}
                                     </div>
 
                                 </div>)}

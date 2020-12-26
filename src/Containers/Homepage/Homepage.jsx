@@ -6,15 +6,17 @@ import { Scrollbars } from 'rc-scrollbars'
 import './Homepage.scss';
 
 
-const Homepage = ({ dispatch, user, posts }) => {
-
+const Homepage = ({ dispatch, user }) => {
+    const [posts,setPosts] = useState([]);
 
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
         axios.get('http://localhost:3000/readallposts', options)
 
-            .then(posts => dispatch({ type: POSTS, payload: posts.data }))
-            .catch(error => console.log())
+            .then((res)=>{
+                setPosts(res.data)
+            })
+            .catch(error => console.log(error))
 
     }, []);
 
@@ -22,7 +24,6 @@ const Homepage = ({ dispatch, user, posts }) => {
 
     const submitPost = async (event) => {   //Funciona, pero sin rerenderizado de Posts (¿useState? ¿dispatch en posts?)
         event.preventDefault();
-        try {
 
 
             const newPost = {
@@ -31,11 +32,14 @@ const Homepage = ({ dispatch, user, posts }) => {
             };
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
             await axios.post('http://localhost:3000/post', newPost, options);
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
+            await axios.get('http://localhost:3000/readallposts', options)
+            .then((res) =>{
+                console.log(res.data)
+                setPosts(res.data);
+              }).catch((error) =>{
+                console.log(error);
+              })
+            }
 
     const commentPost = async (event) => {   //Funciona, pero sin rerenderizado de Posts (¿useState? ¿dispatch en posts?)
         event.preventDefault();

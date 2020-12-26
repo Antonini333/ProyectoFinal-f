@@ -21,8 +21,9 @@ const People = ({ dispatch, user, users }) => {
     const followUser = async (_id) => {
 
         try {
+            
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.put('http://localhost:3000/user/follow' + _id, options);
+            await axios.put('http://localhost:3000/user/follow/' + _id, options);
 
         } catch (error) {
             console.log(error);

@@ -7,13 +7,13 @@ import './Homepage.scss';
 
 
 const Homepage = ({ dispatch, user }) => {
-    const [posts,setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
         axios.get('http://localhost:3000/readallposts', options)
 
-            .then((res)=>{
+            .then((res) => {
                 setPosts(res.data)
             })
             .catch(error => console.log(error))
@@ -22,61 +22,95 @@ const Homepage = ({ dispatch, user }) => {
 
 
 
-    const submitPost = async (event) => {   
+    const submitPost = async (event) => {
         event.preventDefault();
 
 
-            const newPost = {
-                text: event.target.text.value,
-                postedBy: user._id,
-            };
-            const options = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.post('http://localhost:3000/post', newPost, options);
-            await axios.get('http://localhost:3000/readallposts', options)
-            .then((res) =>{
+        const newPost = {
+            text: event.target.text.value,
+            postedBy: user._id,
+        };
+        const options = { headers: { Authorization: `Bearer ${user.token}` } };
+        await axios.post('http://localhost:3000/post', newPost, options);
+        await axios.get('http://localhost:3000/readallposts', options)
+            .then((res) => {
                 console.log(res.data)
                 setPosts(res.data);
-              }).catch((error) =>{
+            }).catch((error) => {
                 console.log(error);
-              })
-            }
+            })
+    }
 
-            const makeComment = (text,_id)=>{
-                axios('http://localhost:3000/commentpost/' + _id
-                ,{
-                    method:"put",
-                    headers:{
-                        "Content-Type":"application/json",
-                        "Authorization":`Bearer ${user.token}`
-                    },
-                    data: JSON.stringify({
+    const makeComment = (text, _id) => {
+        axios('http://localhost:3000/commentpost/' + _id
+            , {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.token}`
+                },
+                data: JSON.stringify({
 
-                        text: text
-                    })
+                    text: text
                 })
-                .then(result=>{
-                    console.log(result)
-                    const newPost = posts.map(post=>{
-                      if(post._id===result._id){
-                          return result
-                      }else{
-                          return post
-                      }
-                   })
-                  setPosts(newPost)
-                }).catch(err=>{
-                    console.log(err)
+            })
+            .then(result => {
+                console.log(result)
+                const newPost = posts.map(post => {
+                    if (post._id === result._id) {
+                        return result
+                    } else {
+                        return post
+                    }
                 })
-          }
-      
- 
-    const submitLike = async (_id) => {
-        try{
+                setPosts(newPost)
+            }).catch(err => {
+                console.log(err)
+            })
+    }
+
+
+    const submitLike = (_id) => {
+        axios('http://localhost:3000/likepost/' + _id
+            , {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.token}`
+                }
+            })
+            .then(result => {
+                console.log(result)
+                const newPost = posts.map(post => {
+                    if (post._id === result._id) {
+                        return result
+                    } else {
+                        return post
+                    }
+                })
+                setPosts(newPost)
+
+
+        const options = { headers: { Authorization: `Bearer ${user.token}` } };
+        axios.get('http://localhost:3000/readallposts', options)
+
+            .then((res) => {
+                setPosts(res.data)
+            })
+            }).catch(err => {
+                console.log(err)
+            })
+    }
+
+
+
+    const submitLikee = async (_id) => {
+        try {
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
             await axios.put('http://localhost:3000/likepost/' + _id, options);
             await axios.get('http://localhost:3000/readallposts', options)
-        }catch {}
-        
+        } catch { }
+
     }
 
 
@@ -99,20 +133,15 @@ const Homepage = ({ dispatch, user }) => {
                                     <div className="cardPostHeader">Posted by: <b>{post.postedBy}</b></div>
                                     <div className="cardPostText">{post.text}</div>
                                     <div className="inputBox">
-                                    <form onSubmit={(e)=>{
-                                    e.preventDefault()
-                                    makeComment(e.target[0].value,post._id)
-                                }}>
-                                  <input type="text" placeholder="add a comment" />  
-                                </form>
-                                        
-                                        {/* <form onSubmit ={commentPost(post._id)}>
+                                        <form onSubmit={(e) => {
+                                            e.preventDefault()
+                                            makeComment(e.target[0].value, post._id)
+                                        }}>
+                                            <input type="text" placeholder="Add a comment " />
+                                        </form>
 
-                                            <textarea className="inputComment" type="text" name="text2" placeholder="Share your opinion"></textarea>
-                                            <button type="submit" className="commentButton">Comment ({post.commentCount})</button>
+                                        <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} >Like ({post.likeCount})</button>
 
-                                            <button type="button" className="likeButton" onClick={() => {submitLike(post._id)}} >Like ({post.likeCount})</button>
-                                        </form> */}
                                     </div>
 
                                 </div>)}

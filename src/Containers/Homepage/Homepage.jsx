@@ -131,9 +131,10 @@ const Homepage = ({ dispatch, user }) => {
                                 <div className="cardPost" key={post._id}>
                                     <div className="cardPostHeader">Posted by: <b>{post.postedBy}</b></div>
                                     <div className="cardPostText">{post.text}</div>
+                                    <div className="cardCommentHeader">Leave your comment</div>
                                     <div className="cardPostComment">{post.comments.map(comment => 
-                                        <div className="cardComment" key={comment._id}>
-                                            <div className="cardCommentText">Dijo:{comment.text}</div></div>)}</div>
+                                        <div className="cardMapComment" key={comment._id}>
+                                            <div className="cardCommentText">{comment.postedBy} commented: "{comment.text}"</div></div>)}</div>
                                     <div className="inputBox">
                                         <form onSubmit={(e) => {
                                             e.preventDefault()
@@ -143,7 +144,7 @@ const Homepage = ({ dispatch, user }) => {
                                         </form>
                                         
 
-                                        <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} >Like ({post.likeCount})</button>
+                                        <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} >Like Post ({post.likeCount})</button>
 
                                     </div>
 

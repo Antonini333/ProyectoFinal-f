@@ -177,11 +177,37 @@ justify-content: center;
 
 .cardPostText{
     height:100%;
-    width: 100%;
+    width: 90%;
     padding: 2em;
     line-height: 1.5em;
-    margin-bottom: 2em;
+    margin-bottom: 0em;
+    font-size: 1.1em;
 }
+
+.cardCommentHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    height:20%;
+    width: 54.6em;
+    border-radius: 0.2em;
+    background-color: rgb(29, 84, 247);
+    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #141414b4; 
+    
+
+}
+
+.cardPostComment{
+
+    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #3b2852b4; 
+    height:100%;
+    width: 50.5em;
+    padding: 2em;
+    line-height: 1.5em;
+    margin-bottom: 0em;
+    font-size: 1em;
+}
+
 
 .inputBox{
     display: flex;
@@ -194,9 +220,9 @@ justify-content: center;
 
 
 .inputComment{
-    width: 50em;
+    width: 54em;
     height:2em;
-    margin-top: 0.1em;
+    margin-top: -1em;
     font-size: small;
 
     

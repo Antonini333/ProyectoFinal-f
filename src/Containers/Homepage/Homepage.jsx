@@ -64,6 +64,14 @@ const Homepage = ({ dispatch, user }) => {
                     }
                 })
                 setPosts(newPost)
+
+
+        const options = { headers: { Authorization: `Bearer ${user.token}` } };
+        axios.get('http://localhost:3000/readallposts', options)
+
+            .then((res) => {
+                setPosts(res.data)
+            })
             }).catch(err => {
                 console.log(err)
             })
@@ -112,7 +120,7 @@ const Homepage = ({ dispatch, user }) => {
                     <div className="headerProfile"><h2>My Profile</h2></div>
     <div className='photoProfile'>
         <img src={user.photo}></img></div>
-                    <div className='infoProfile'><h4><div>{user.name}&nbsp; {user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div><div>"{user.bio}"</div></h4></div>
+                    <div className='infoProfile'><h4><div>{user.name}&nbsp; {user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div></h4><div>"{user.bio}"</div></div>
                 </div>
 
                 <div className='TLContainer'>
@@ -123,12 +131,15 @@ const Homepage = ({ dispatch, user }) => {
                                 <div className="cardPost" key={post._id}>
                                     <div className="cardPostHeader">Posted by: <b>{post.postedBy}</b></div>
                                     <div className="cardPostText">{post.text}</div>
+                                    <div className="cardPostComment">{post.comments.map(comment => 
+                                        <div className="cardComment" key={comment._id}>
+                                            <div className="cardCommentText">Dijo:{comment.text}</div></div>)}</div>
                                     <div className="inputBox">
                                         <form onSubmit={(e) => {
                                             e.preventDefault()
                                             makeComment(e.target[0].value, post._id)
                                         }}>
-                                            <input type="text" placeholder="Hit enter to add a comment " />
+                                            <input className="inputComment" type="text" placeholder="Hit enter to add a comment " />
                                         </form>
                                         
 

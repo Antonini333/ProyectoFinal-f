@@ -28,7 +28,8 @@ const Homepage = ({ dispatch, user }) => {
 
         const newPost = {
             text: event.target.text.value,
-            postedBy: user._id,
+            postedBy: user._id
+            
         };
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
         await axios.post('http://localhost:3000/post', newPost, options);
@@ -66,12 +67,12 @@ const Homepage = ({ dispatch, user }) => {
                 setPosts(newPost)
 
 
-        const options = { headers: { Authorization: `Bearer ${user.token}` } };
-        axios.get('http://localhost:3000/readallposts', options)
+                const options = { headers: { Authorization: `Bearer ${user.token}` } };
+                axios.get('http://localhost:3000/readallposts', options)
 
-            .then((res) => {
-                setPosts(res.data)
-            })
+                    .then((res) => {
+                        setPosts(res.data)
+                    })
             }).catch(err => {
                 console.log(err)
             })
@@ -99,12 +100,12 @@ const Homepage = ({ dispatch, user }) => {
                 setPosts(newPost)
 
 
-        const options = { headers: { Authorization: `Bearer ${user.token}` } };
-        axios.get('http://localhost:3000/readallposts', options)
+                const options = { headers: { Authorization: `Bearer ${user.token}` } };
+                axios.get('http://localhost:3000/readallposts', options)
 
-            .then((res) => {
-                setPosts(res.data)
-            })
+                    .then((res) => {
+                        setPosts(res.data)
+                    })
             }).catch(err => {
                 console.log(err)
             })
@@ -118,8 +119,8 @@ const Homepage = ({ dispatch, user }) => {
 
                 <div className='profile'>
                     <div className="headerProfile"><h2>My Profile</h2></div>
-    <div className='photoProfile'>
-        <img src={user.photo}></img></div>
+                    <div className='photoProfile'>
+                        <img src={user.photo}></img></div>
                     <div className='infoProfile'><h4><div>{user.name}&nbsp; {user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div></h4><div>"{user.bio}"</div></div>
                 </div>
 
@@ -129,12 +130,12 @@ const Homepage = ({ dispatch, user }) => {
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
-                                    <div className="cardPostHeader">Posted by: <b>{post.postedBy}</b></div>
+                                    <div className="cardPostHeader">Posted by: <b>{post.name} {post.surname}</b></div>
                                     <div className="cardPostText">{post.text}</div>
                                     <div className="cardCommentHeader">Leave your comment</div>
-                                    <div className="cardPostComment">{post.comments.map(comment => 
+                                    <div className="cardPostComment">{post.comments.map(comment =>
                                         <div className="cardMapComment" key={comment._id}>
-                                            <div className="cardCommentText">{comment.postedBy} commented: "{comment.text}"</div></div>)}</div>
+                                            <div className="cardCommentText">{comment.name} {comment.surname} commented: "{comment.text}"</div></div>)}</div>
                                     <div className="inputBox">
                                         <form onSubmit={(e) => {
                                             e.preventDefault()
@@ -142,7 +143,7 @@ const Homepage = ({ dispatch, user }) => {
                                         }}>
                                             <input className="inputComment" type="text" placeholder="Hit enter to add a comment " />
                                         </form>
-                                        
+
 
                                         <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} >Like Post ({post.likeCount})</button>
 

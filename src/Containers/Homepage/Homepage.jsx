@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { POSTS } from '../../Redux/types';
@@ -8,6 +8,25 @@ import './Homepage.scss';
 
 const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
+    const [terms, setTerms] = useState('')  // Para borrar los inputs una vez se ha producido el submit
+    
+    const useInterval = (callback, delay) =>{
+        const savedCallback = useRef();
+    useEffect(() => {
+        savedCallback.current = callback;
+    }, [callback]);
+
+    useEffect(() => {
+        function tick() {
+            savedCallback.current();
+        }
+        if (delay !== null) {
+            let id = setInterval(tick, delay);
+            return () => clearInterval(id);
+        }
+    },[callback, delay]);
+
+}
 
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
@@ -19,6 +38,12 @@ const Homepage = ({ dispatch, user }) => {
             .catch(error => console.log(error))
 
     }, []);
+
+    useInterval(async () =>{
+        console.log('Refreshing Timeline')
+         let res = await axios.get('http://localhost:3000/readallposts')
+        setPosts(res.data)
+    }, 5000)
 
 
 
@@ -130,12 +155,12 @@ const Homepage = ({ dispatch, user }) => {
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
-                                    <div className="cardPostHeader">Posted by: <b>{post.name} {post.surname}</b></div>
+                                    <div className="cardPostHeader"><h3>Posted by:</h3> <b>{post.name} {post.surname}</b></div>
                                     <div className="cardPostText">{post.text}</div>
-                                    <div className="cardCommentHeader">Leave your comment</div>
+                                    <div className="cardCommentHeader"><h4>Leave your comment</h4></div>
                                     <div className="cardPostComment">{post.comments.map(comment =>
                                         <div className="cardMapComment" key={comment._id}>
-                                            <div className="cardCommentText">{comment.name} {comment.surname} commented: "{comment.text}"</div></div>)}</div>
+                                            <div className="cardCommentText"><b>{comment.name} {comment.surname}</b> commented: <em>"{comment.text}"</em></div></div>)}</div>
                                     <div className="inputBox">
                                         <form onSubmit={(e) => {
                                             e.preventDefault()

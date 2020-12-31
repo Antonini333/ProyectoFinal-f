@@ -9,62 +9,47 @@ import './Homepage.scss';
 const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
     const [terms, setTerms] = useState('')  // Para borrar los inputs una vez se ha producido el submit
-    
-    const useInterval = (callback, delay) =>{
+
+
+    const useInterval = (callback, delay) => {
         const savedCallback = useRef();
-    useEffect(() => {
-        savedCallback.current = callback;
-    }, [callback]);
+        useEffect(() => {
+            savedCallback.current = callback;
+        }, [callback]);
+        useEffect(() => {
+            function tick() {
+                savedCallback.current();
+            }
+            if (delay !== null) {
+                let id = setInterval(tick, delay);
+                return () => clearInterval(id);
+            }
+        }, [callback, delay]);
 
-    useEffect(() => {
-        function tick() {
-            savedCallback.current();
-        }
-        if (delay !== null) {
-            let id = setInterval(tick, delay);
-            return () => clearInterval(id);
-        }
-    },[callback, delay]);
-
-}
-
-    useEffect(() => {
-        const options = { headers: { Authorization: `Bearer ${user.token}` } };
-        axios.get('http://localhost:3000/readallposts', options)
-
-            .then((res) => {
-                setPosts(res.data)
-            })
-            .catch(error => console.log(error))
-
-    }, []);
-
-    useInterval(async () =>{
+    }
+    useInterval(async () => {
         console.log('Refreshing Timeline')
-         let res = await axios.get('http://localhost:3000/readallposts')
+        let res = await axios.get('http://localhost:3000/readallposts')
         setPosts(res.data)
-    }, 5000)
+        dispatch({ type: POSTS, payload: res.data })
+    }, 1000)
+
 
 
 
     const submitPost = async (event) => {
-        event.preventDefault();
+        try {
+            event.preventDefault();
+            const options = { headers: { Authorization: `Bearer ${user.token}` } };
+            const newPost = {
+                text: event.target.text.value,
+                postedBy: user._id
+            };
+            await axios.post('http://localhost:3000/post', newPost, options);
+        } catch (error) {
+            console.log(error)
+        }
 
-
-        const newPost = {
-            text: event.target.text.value,
-            postedBy: user._id
-            
-        };
-        const options = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.post('http://localhost:3000/post', newPost, options);
-        await axios.get('http://localhost:3000/readallposts', options)
-            .then((res) => {
-                console.log(res.data)
-                setPosts(res.data);
-            }).catch((error) => {
-                console.log(error);
-            })
     }
 
     const makeComment = (text, _id) => {
@@ -91,13 +76,6 @@ const Homepage = ({ dispatch, user }) => {
                 })
                 setPosts(newPost)
 
-
-                const options = { headers: { Authorization: `Bearer ${user.token}` } };
-                axios.get('http://localhost:3000/readallposts', options)
-
-                    .then((res) => {
-                        setPosts(res.data)
-                    })
             }).catch(err => {
                 console.log(err)
             })
@@ -124,13 +102,6 @@ const Homepage = ({ dispatch, user }) => {
                 })
                 setPosts(newPost)
 
-
-                const options = { headers: { Authorization: `Bearer ${user.token}` } };
-                axios.get('http://localhost:3000/readallposts', options)
-
-                    .then((res) => {
-                        setPosts(res.data)
-                    })
             }).catch(err => {
                 console.log(err)
             })
@@ -146,7 +117,7 @@ const Homepage = ({ dispatch, user }) => {
                     <div className="headerProfile"><h2>My Profile</h2></div>
                     <div className='photoProfile'>
                         <img src={user.photo}></img></div>
-                    <div className='infoProfile'><h4><div>{user.name}&nbsp; {user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div></h4><div>"{user.bio}"</div></div>
+                    <div className='infoProfile'><h4><div>{user.name}&nbsp;{user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div></h4><div>"{user.bio}"</div></div>
                 </div>
 
                 <div className='TLContainer'>

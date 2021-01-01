@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { POSTS } from '../../Redux/types';
-import { Scrollbars } from 'rc-scrollbars'
+import { Scrollbars } from 'rc-scrollbars';
 import './Homepage.scss';
 
 
@@ -122,7 +122,7 @@ const Homepage = ({ dispatch, user }) => {
 
                 <div className='TLContainer'>
                     <div className="header"><h2>What are people talking about?</h2></div>
-                    <Scrollbars style={{ width: 1000, height: 450 }}>
+                    <Scrollbars style={{ width: 1000, height: 600 }}>
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
@@ -132,6 +132,10 @@ const Homepage = ({ dispatch, user }) => {
                                     <div className="cardPostComment">{post.comments.map(comment =>
                                         <div className="cardMapComment" key={comment._id}>
                                             <div className="cardCommentText"><b>{comment.name} {comment.surname}</b> commented: <em>"{comment.text}"</em></div></div>)}</div>
+                                            <div className="likeBox">
+
+                                        <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} ><b>Like Post&nbsp;&nbsp;({post.likeCount})</b></button>
+                                        </div>
                                     <div className="inputBox">
                                         <form onSubmit={(e) => {
                                             e.preventDefault()
@@ -140,9 +144,7 @@ const Homepage = ({ dispatch, user }) => {
                                             <input className="inputComment" type="text" placeholder="Hit enter to add a comment " />
                                         </form>
 
-
-                                        <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} >Like Post ({post.likeCount})</button>
-
+                                       
                                     </div>
 
                                 </div>)}

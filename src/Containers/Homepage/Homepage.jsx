@@ -8,9 +8,10 @@ import './Homepage.scss';
 
 const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
-    const [terms, setTerms] = useState('');  // Para borrar los inputs una vez se ha producido el submit
+    const [value, setValue] = useState('');  // Para borrar los inputs una vez se ha producido el submit
     const [api, setApi] = useState('http://localhost:3000/readallposts');
-        
+    console.log(value)
+
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
         useEffect(() => {
@@ -32,10 +33,9 @@ const Homepage = ({ dispatch, user }) => {
         console.log('Refreshing Timeline')
         let res = await axios.get(api)
         setPosts(res.data)
-        dispatch({ type: POSTS, payload: res.data })
-    }, 1000)
 
-    
+        dispatch({ type: POSTS, payload: res.data })
+    }, 2000)
 
 
 
@@ -44,11 +44,12 @@ const Homepage = ({ dispatch, user }) => {
             event.preventDefault();
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
             const newPost = {
-                text: event.target.text.value,
+                text: value,
                 categorie: event.target.categorie.value,
                 postedBy: user._id
             };
-            let res= await axios.post('http://localhost:3000/post', newPost, options);
+            let res = await axios.post('http://localhost:3000/post', newPost, options);
+            setValue('');
             console.log(res.data)
         } catch (error) {
             console.log(error)
@@ -66,7 +67,7 @@ const Homepage = ({ dispatch, user }) => {
                 },
                 data: JSON.stringify({
 
-                    text: text
+                    text: value
                 })
             })
             .then(result => {
@@ -79,6 +80,7 @@ const Homepage = ({ dispatch, user }) => {
                     }
                 })
                 setPosts(newPost)
+                setValue('');
 
             }).catch(err => {
                 console.log(err)
@@ -113,6 +115,8 @@ const Homepage = ({ dispatch, user }) => {
 
 
 
+
+
     return (
         <div className='homepage'>
             <div className='mainContainer'>
@@ -120,22 +124,22 @@ const Homepage = ({ dispatch, user }) => {
                 <div className='profile'>
                     <div className="headerProfile"><h2>My Profile</h2></div>
                     <div className='photoProfile'>
-                        <img src={user.photo}></img></div>
+                        <img src={user.photo} alt="Your face here"></img></div>
                     <div className='infoProfile'><h4><div>{user.name}&nbsp;{user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div></h4><div>"{user.bio}"</div></div>
                 </div>
 
                 <div className='TLContainer'>
-                <select onClick={ (e) => setApi(e.target.value)}>
-        <option key={-1}>Choose Category</option>
-        <option type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
-        <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
-        <option type='category' name='category' value="http://localhost:3000/readcookingposts">Parenting</option>
-        <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
-        <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
-        <option type='category' name='category' value="http://localhost:3000/readparentingposts">Cooking</option>
+                    <select onClick={(e) => setApi(e.target.value)}>
+                        <option key={-1}>Choose Category</option>
+                        <option type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
+                        <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
+                        <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
+                        <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
+                        <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
+                        <option type='category' name='category' value="http://localhost:3000/readcookingposts">Cooking</option>
 
-        
-               </select>
+
+                    </select>
                     <div className="header"><h2>What are people talking about?</h2></div>
                     <Scrollbars style={{ width: 1000, height: 600 }}>
                         <div className="posts">
@@ -147,33 +151,34 @@ const Homepage = ({ dispatch, user }) => {
                                     <div className="cardPostComment">{post.comments.map(comment =>
                                         <div className="cardMapComment" key={comment._id}>
                                             <div className="cardCommentText"><b>{comment.name} {comment.surname}</b> commented: <em>"{comment.text}"</em></div></div>)}</div>
-                                            
-                                    <div className="inputBox">
-                                    <div className="likeBox">
 
-<button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} ><b>+1 WP</b></button>
-</div>
+                                    <div className="inputBox">
+                                        <div className="likeBox">
+
+                                            <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} ><b>+1 WP</b></button>
+                                        </div>
                                         <form onSubmit={(e) => {
                                             e.preventDefault()
                                             makeComment(e.target[0].value, post._id)
                                         }}>
-                                            <input className="inputComment" type="text" placeholder="Hit enter to add a comment " />
+                                            <input onChange={event => setValue(event.target.value)} className="inputComment" type="text" placeholder="Hit enter to add a comment " />
+
                                         </form>
 
-                                       
+
                                     </div>
 
                                 </div>)}
                         </div>
                     </Scrollbars>
                     <div className="newPostBox">
-                        <form onSubmit={submitPost}>
+                        <form onSubmit={submitPost} >
 
-                            <textarea className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
-                            
-                            <select className="newPostChoose" type="categorie" name="categorie" placeholder="Choose your post categorie" > 
+                            <textarea onChange={event => setValue(event.target.value)} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
+
+                            <select className="newPostChoose" type="categorie" name="categorie" placeholder="Choose your post categorie" >
                                 <option value="Lifestyle">Lifestyle</option>
-                                <option value="Larenting">Parenting</option>
+                                <option value="Parenting">Parenting</option>
                                 <option value="News">News</option>
                                 <option value="Technology">Techology</option>
                                 <option value="Cooking">Cooking</option>

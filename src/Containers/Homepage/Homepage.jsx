@@ -8,11 +8,9 @@ import './Homepage.scss';
 
 const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
-    const [terms, setTerms] = useState('')  // Para borrar los inputs una vez se ha producido el submit
-    const categorie = [
-        "http://localhost:3000/"
-    ]
-
+    const [terms, setTerms] = useState('');  // Para borrar los inputs una vez se ha producido el submit
+    const [api, setApi] = useState('http://localhost:3000/readallposts');
+        
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
         useEffect(() => {
@@ -29,13 +27,15 @@ const Homepage = ({ dispatch, user }) => {
         }, [callback, delay]);
 
     }
-    useInterval(async () => {
+
+    useInterval(async (event) => {
         console.log('Refreshing Timeline')
-        let res = await axios.get('http://localhost:3000/readallposts')
+        let res = await axios.get(api)
         setPosts(res.data)
         dispatch({ type: POSTS, payload: res.data })
     }, 1000)
 
+    
 
 
 
@@ -125,12 +125,23 @@ const Homepage = ({ dispatch, user }) => {
                 </div>
 
                 <div className='TLContainer'>
+                <select onClick={ (e) => setApi(e.target.value)}>
+        <option key={-1}>Choose Category</option>
+        <option type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
+        <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
+        <option type='category' name='category' value="http://localhost:3000/readcookingposts">Parenting</option>
+        <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
+        <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
+        <option type='category' name='category' value="http://localhost:3000/readparentingposts">Cooking</option>
+
+        
+               </select>
                     <div className="header"><h2>What are people talking about?</h2></div>
                     <Scrollbars style={{ width: 1000, height: 600 }}>
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
-                                    <div className="cardPostHeader"><h3>Posted by:</h3> <b>{post.name} {post.surname}</b>{post.likeCount} Wisdom Points</div>
+                                    <div className="cardPostHeader"><h3>Posted at <em>{post.categorie}</em> by:</h3>  <b>{post.name} {post.surname} </b>{post.likeCount} Wisdom Points</div>
                                     <div className="cardPostText">{post.text}</div>
                                     <div className="cardCommentHeader"><h4>Leave your comment</h4></div>
                                     <div className="cardPostComment">{post.comments.map(comment =>
@@ -161,11 +172,11 @@ const Homepage = ({ dispatch, user }) => {
                             <textarea className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
                             
                             <select className="newPostChoose" type="categorie" name="categorie" placeholder="Choose your post categorie" > 
-                                <option value="lifestyle">Lifestyle</option>
-                                <option value="parenting">Parenting</option>
-                                <option value="news">News</option>
-                                <option value="technology">Techology</option>
-                                <option value="cooking">Cooking</option>
+                                <option value="Lifestyle">Lifestyle</option>
+                                <option value="Larenting">Parenting</option>
+                                <option value="News">News</option>
+                                <option value="Technology">Techology</option>
+                                <option value="Cooking">Cooking</option>
                             </select>
                             <button type="submit" className="newPostButton"><h3>Share your wisdom</h3></button>
 

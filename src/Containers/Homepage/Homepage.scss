@@ -157,9 +157,17 @@ justify-content: center;
     border-radius: 0.5em;
     margin: 0.5% 0 0.5% 0 ;   
     background-image: linear-gradient(to bottom, rgb(215, 10, 205), rgb(112, 120, 155));
-    border: 0.2em outset #2e2850f5;     
+    border: 0.2em outset #2e2850f5;    
+    transition: 0.1s 
     
 }
+.newPostButton:hover{
+    background-image: linear-gradient(to bottom, rgb(255, 7, 243), rgb(77, 226, 194));
+    border: 0.2em inset #fafaff69;  
+    color: rgb(77, 8, 83);
+    transition: 0.1s
+}
+
 
 .cardPost{
     display: flex;

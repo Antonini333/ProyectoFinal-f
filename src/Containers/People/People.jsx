@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { ALL_USERS } from '../../Redux/types';
-import { Scrollbars } from 'rc-scrollbars'
-import './People.scss';
+import { Scrollbars } from 'rc-scrollbars';
+import { notification } from 'antd';
+ import './People.scss';
 
 
 const People = ({ dispatch, user, users }) => {
@@ -18,17 +19,24 @@ const People = ({ dispatch, user, users }) => {
 
     }, []);
 
-    const followUser = async (_id) => {
+    const followUser = (_id) => {
+        axios('http://localhost:3000/user/follow/' + _id
+            , {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.token}`
+                }
+            })
+            axios.get('http://localhost:3000/users')
 
-        try {
-            
-            const options = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.put('http://localhost:3000/user/follow/' + _id, options);
-
-        } catch (error) {
-            console.log(error);
-        }
+            .then(result => {
+                console.log(result)
+            }).catch(err => {
+                console.log(err)
+            })
     }
+
 
     return (
         <div className='people'>
@@ -36,12 +44,14 @@ const People = ({ dispatch, user, users }) => {
                 <Scrollbars style={{ width: 1200, height: 425 }}>
                     {users?.map(user =>
                         <div className="userCard" key={user._id}>
-                            <div className="userCardPhoto"></div>
+                            <div className="userCardPhoto">
+                            <img src={user.photo}></img>
+                            </div>
                             <div className="userCardName"><b>{user.name}  {user.surname},</b></div> &nbsp;
                                     <div className="userCardAge">{user.age}</div>
                             <div className="followBox">
 
-                                <button className="followButton" onClick={() => { followUser(user._id) }} >+ Follow</button>
+                                <button className="followButton" onClick={() => { followUser(user._id) }} > Follow</button>
                             </div>
                             <div className="userCardBio">Bio: {user.bio}</div>
                         </div>)}

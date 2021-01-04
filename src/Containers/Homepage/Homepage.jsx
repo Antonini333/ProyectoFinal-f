@@ -9,7 +9,9 @@ import './Homepage.scss';
 const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
     const [terms, setTerms] = useState('')  // Para borrar los inputs una vez se ha producido el submit
-
+    const categorie = [
+        "http://localhost:3000/"
+    ]
 
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
@@ -43,9 +45,11 @@ const Homepage = ({ dispatch, user }) => {
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
             const newPost = {
                 text: event.target.text.value,
+                categorie: event.target.categorie.value,
                 postedBy: user._id
             };
-            await axios.post('http://localhost:3000/post', newPost, options);
+            let res= await axios.post('http://localhost:3000/post', newPost, options);
+            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
@@ -126,17 +130,18 @@ const Homepage = ({ dispatch, user }) => {
                         <div className="posts">
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
-                                    <div className="cardPostHeader"><h3>Posted by:</h3> <b>{post.name} {post.surname}</b></div>
+                                    <div className="cardPostHeader"><h3>Posted by:</h3> <b>{post.name} {post.surname}</b>{post.likeCount} Wisdom Points</div>
                                     <div className="cardPostText">{post.text}</div>
                                     <div className="cardCommentHeader"><h4>Leave your comment</h4></div>
                                     <div className="cardPostComment">{post.comments.map(comment =>
                                         <div className="cardMapComment" key={comment._id}>
                                             <div className="cardCommentText"><b>{comment.name} {comment.surname}</b> commented: <em>"{comment.text}"</em></div></div>)}</div>
-                                            <div className="likeBox">
-
-                                        <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} ><b>Like Post&nbsp;&nbsp;({post.likeCount})</b></button>
-                                        </div>
+                                            
                                     <div className="inputBox">
+                                    <div className="likeBox">
+
+<button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} ><b>+1 WP</b></button>
+</div>
                                         <form onSubmit={(e) => {
                                             e.preventDefault()
                                             makeComment(e.target[0].value, post._id)
@@ -154,6 +159,14 @@ const Homepage = ({ dispatch, user }) => {
                         <form onSubmit={submitPost}>
 
                             <textarea className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
+                            
+                            <select className="newPostChoose" type="categorie" name="categorie" placeholder="Choose your post categorie" > 
+                                <option value="lifestyle">Lifestyle</option>
+                                <option value="parenting">Parenting</option>
+                                <option value="news">News</option>
+                                <option value="technology">Techology</option>
+                                <option value="cooking">Cooking</option>
+                            </select>
                             <button type="submit" className="newPostButton"><h3>Share your wisdom</h3></button>
 
                         </form>

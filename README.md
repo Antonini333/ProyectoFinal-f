@@ -10,7 +10,7 @@ _Para poder poner en funcionamiento el proyecto en tu maquina local con proposit
 
 ```
 npm init -y
-npm i sass react-router-dom axios antd react-redux rc-scrollbars slick-carousel redux
+npm i sass react-router-dom axios antd react-redux rc-scrollbars
 
 ```
 _Para ejecutar el programa en tu maquina local:_

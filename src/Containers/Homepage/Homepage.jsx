@@ -9,7 +9,7 @@ import './Homepage.scss';
 const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
     const [value, setValue] = useState('');  // Para borrar los inputs una vez se ha producido el submit
-    const [api, setApi] = useState('http://localhost:3000/readallposts');
+    const [api, setApi] = useState('https://wisdomshare.herokuapp.com/readallposts');
     console.log(value)
 
     const useInterval = (callback, delay) => {
@@ -48,7 +48,7 @@ const Homepage = ({ dispatch, user }) => {
                 categorie: event.target.categorie.value,
                 postedBy: user._id
             };
-            let res = await axios.post('http://localhost:3000/post', newPost, options);
+            let res = await axios.post('https://wisdomshare.herokuapp.com/post', newPost, options);
             setValue('');
             console.log(res.data)
         } catch (error) {
@@ -58,7 +58,7 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     const makeComment = (text, _id) => {
-        axios('http://localhost:3000/commentpost/' + _id
+        axios('https://wisdomshare.herokuapp.com/commentpost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -89,7 +89,7 @@ const Homepage = ({ dispatch, user }) => {
 
 
     const submitLike = (_id) => {
-        axios('http://localhost:3000/likepost/' + _id
+        axios('https://wisdomshare.herokuapp.com/likepost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -129,18 +129,18 @@ const Homepage = ({ dispatch, user }) => {
                 </div>
 
                 <div className='TLContainer'>
-                    <select onClick={(e) => setApi(e.target.value)}>
-                        <option key={-1}>Choose Category</option>
-                        <option type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
-                        <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
-                        <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
-                        <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
-                        <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
-                        <option type='category' name='category' value="http://localhost:3000/readcookingposts">Cooking</option>
-
-
-                    </select>
                     <div className="header"><h2>What are people talking about?</h2></div>
+                    <div className="categoryBox">
+                    <select className= "selectCategory"onClick={(e) => setApi(e.target.value)}>
+                        <option key={-1}>Choose Category</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readallposts"  >All Posts</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readlifestyleposts" >Lifestyle</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readparentingposts">Parenting</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readnewsposts">News</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readtechposts">Techology</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readcookingposts">Cooking</option>
+                    </select>
+                    </div>
                     <Scrollbars style={{ width: 1000, height: 600 }}>
                         <div className="posts">
                             {posts?.map(post =>
@@ -176,7 +176,8 @@ const Homepage = ({ dispatch, user }) => {
 
                             <textarea onChange={event => setValue(event.target.value)} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
 
-                            <select className="newPostChoose" type="categorie" name="categorie" placeholder="Choose your post categorie" >
+                            <select className="newPostChoose" type="categorie" name="categorie">
+                            <option key={-1}>Select your post category</option>
                                 <option value="Lifestyle">Lifestyle</option>
                                 <option value="Parenting">Parenting</option>
                                 <option value="News">News</option>

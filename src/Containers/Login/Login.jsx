@@ -17,7 +17,7 @@ const Login = ({ dispatch }) => {
                 email: event.target.email.value,
                 password: event.target.password.value
             }
-            let res = await axios.post('https://frozen-falls-26970.herokuapp.com/user/login', body);
+            let res = await axios.post('https://wisdomshare.herokuapp.com/user/login', body);
             let user = res.data;
             localStorage.setItem("user", JSON.stringify(user)); // Borrar más tarde
             console.log(user)

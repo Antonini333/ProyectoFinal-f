@@ -12,7 +12,7 @@ const People = ({ dispatch, user, users }) => {
 
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
-        axios.get('http://localhost:3000/users', options)
+        axios.get('https://wisdomshare.herokuapp.com/users', options)
 
             .then(users => dispatch({ type: ALL_USERS, payload: users.data }))
             .catch(error => console.log())
@@ -20,7 +20,7 @@ const People = ({ dispatch, user, users }) => {
     }, []);
 
     const followUser = (_id) => {
-        axios('http://localhost:3000/user/follow/' + _id
+        axios('https://wisdomshare.herokuapp.com/user/follow/' + _id
             , {
                 method: "put",
                 headers: {
@@ -28,7 +28,7 @@ const People = ({ dispatch, user, users }) => {
                     "Authorization": `Bearer ${user.token}`
                 }
             })
-            axios.get('http://localhost:3000/users')
+            axios.get('https://wisdomshare.herokuapp.com/users')
 
             .then(result => {
                 console.log(result)
@@ -53,7 +53,7 @@ const People = ({ dispatch, user, users }) => {
 
                                 <button className="followButton" onClick={() => { followUser(user._id) }} > Follow</button>
                             </div>
-                            <div className="userCardBio">Bio: {user.bio}</div>
+                            <div className="userCardBio">{user.bio}</div>
                         </div>)}
 
                 </Scrollbars>

@@ -18,7 +18,7 @@ const Register = () => {
                 age: event.target.age.value,
                 address: event.target.address.value
             }
-            let res = await axios.post('https://frozen-falls-26970.herokuapp.com/user/register', body);
+            let res = await axios.post('https://wisdomshare.herokuapp.com/user/register', body);
             console.log(res.data)
 
             useHistory.push('/login')

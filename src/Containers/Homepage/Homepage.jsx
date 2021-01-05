@@ -198,11 +198,11 @@ const Homepage = ({ dispatch, user }) => {
                             <textarea onChange={event => setValue(event.target.value)} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
 
                             <select className="newPostChoose" type="categorie" name="categorie">
-                            <option key={-1} selected disabled>Select your post category</option>
+                            <option key={-1} value="General" selected disabled>Select your post category</option>
                                 <option value="Lifestyle">Lifestyle</option>
                                 <option value="Parenting">Parenting</option>
                                 <option value="News">News</option>
-                                <option value="Technology">Techology</option>
+                                <option value="Technology">Technology</option>
                                 <option value="Cooking">Cooking</option>
                             </select>
                             <button type="submit" className="newPostButton"><h3>Share your wisdom</h3></button>

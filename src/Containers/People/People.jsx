@@ -9,8 +9,6 @@ import { message } from 'antd';
 
 const People = ({ dispatch, user, users }) => {
 
-    const success = 
-        message.success('User followed')
 
 
     useEffect(() => {
@@ -35,7 +33,6 @@ const People = ({ dispatch, user, users }) => {
 
             .then(result => {
                 console.log(result)
-                success();
             }).catch(err => {
                 console.log(err)
             })

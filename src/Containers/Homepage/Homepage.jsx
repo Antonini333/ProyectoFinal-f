@@ -12,8 +12,7 @@ const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
     const [value, setValue] = useState('');  // Para borrar los inputs una vez se ha producido el submit
     const [api, setApi] = useState('http://localhost:3000/readallposts');
-    const [userValues, setUserValues] = useState(user)
-    
+    const imAdmin = user?.role === 'admin';
 
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
@@ -113,13 +112,28 @@ const Homepage = ({ dispatch, user }) => {
             }).catch(err => {
                 console.log(err)
             })
-    }ddd
+    }
 
     let handleClick =(e) => {
         e.preventDefault();
         history.push('/update')
     }
 
+    const deletePost = (_id) => {
+        axios('http://localhost:3000/deletepost/' + _id
+            , {
+                method: "delete",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.token}`
+                }
+            })
+            .then(result => {
+                console.log(result)
+            }).catch(err => {
+                console.log(err)
+            })
+    }
     
 
 
@@ -140,8 +154,7 @@ const Homepage = ({ dispatch, user }) => {
                     <div className="header"><h2>What are people talking about?</h2></div>
                     <div className="categoryBox">
                     <select className= "selectCategory"onClick={(e) => setApi(e.target.value)}>
-                        <option key={-1} selected disabled>Choose Category</option>
-                        <option type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
+                        <option selected type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
                         <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
                         <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
                         <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
@@ -154,6 +167,9 @@ const Homepage = ({ dispatch, user }) => {
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
                                     <div className="cardPostHeader"><h3>Posted at <em>{post.categorie}</em> by:</h3>  <b>{post.name} {post.surname} </b>{post.likeCount} Wisdom Points</div>
+                                    <div className="deleteBox">
+                                    {imAdmin && <button type="button" className="deleteButton" onClick={() => { deletePost(post._id) }} >Delete Post</button>}
+                                    </div>
                                     <div className="cardPostText">{post.text}</div>
                                     <div className="cardCommentHeader"><h4>Leave your comment</h4></div>
                                     <div className="cardPostComment">{post.comments.map(comment =>

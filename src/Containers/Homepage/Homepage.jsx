@@ -49,9 +49,8 @@ const Homepage = ({ dispatch, user }) => {
                 categorie: event.target.categorie.value,
                 postedBy: user._id
             };
-            let res = await axios.post('https://wisdomshare.herokuapp.com/post', newPost, options);
+            await axios.post('https://wisdomshare.herokuapp.com/post', newPost, options);
             setValue('');
-            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
@@ -72,7 +71,6 @@ const Homepage = ({ dispatch, user }) => {
                 })
             })
             .then(result => {
-                console.log(result)
                 const newPost = posts.map(post => {
                     if (post._id === result._id) {
                         return result
@@ -99,7 +97,6 @@ const Homepage = ({ dispatch, user }) => {
                 }
             })
             .then(result => {
-                console.log(result)
                 const newPost = posts.map(post => {
                     if (post._id === result._id) {
                         return result

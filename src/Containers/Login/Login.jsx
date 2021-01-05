@@ -18,10 +18,6 @@ const Login = ({ dispatch }) => {
                 password: event.target.password.value
             }
             let res = await axios.post('https://wisdomshare.herokuapp.com/user/login', body);
-            let user = res.data;
-            localStorage.setItem("user", JSON.stringify(user)); // Borrar más tarde
-            console.log(user)
-
             dispatch({ type: LOGIN, payload: res.data })
             history.push('/homepage')
         } catch (error) {

@@ -3,8 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { ALL_USERS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars';
-import { message } from 'antd';
- import './People.scss';
+import './People.scss';
 
 
 const People = ({ dispatch, user, users }) => {
@@ -18,7 +17,7 @@ const People = ({ dispatch, user, users }) => {
             .then(users => dispatch({ type: ALL_USERS, payload: users.data }))
             .catch(error => console.log())
 
-    }, []);
+    });
 
     const followUser = (_id) => {
         axios('https://wisdomshare.herokuapp.com/user/follow/' + _id

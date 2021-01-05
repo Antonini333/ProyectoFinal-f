@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import './UpdateProfile.scss'
 import { connect } from 'react-redux';
 import { UPDATE } from '../../Redux/types';
@@ -20,10 +20,10 @@ const UpdateProfile = ({ dispatch, user }) => {
                 age: event.target.age.value,
                 address: event.target.address.value,
                 bio: event.target.bio.value,
-                photo: event.target.photo.value
+                photo: event.target.photo.value,
             }
            await axios.put('https://wisdomshare.herokuapp.com/user/update', body, options);
-           let res = await axios.gett('https://wisdomshare.herokuapp.com/user', options);
+           let res = await axios.get('https://wisdomshare.herokuapp.com/user', options);
             dispatch({ type: UPDATE, payload: res.data })
             
            history.push('/homepage')
@@ -36,7 +36,7 @@ const UpdateProfile = ({ dispatch, user }) => {
         <div className="mainupdate">
             <div></div>
         <div className="updateBox">
-             <div className="updateRegister"><h2>You're close to WisdomShare</h2>¡Sign Up!</div>
+             <div className="updateRegister"><h2>Welcome to your profile</h2> <em>"There is nothing permanent except change"</em></div>
             <form className="updateForm" onSubmit={clickUpdate} >
                 <Input className="updateinputText" type="name" name="name" defaultValue={user.name}/>
                 <Input className="updateinputText" type="surname" name="surname" defaultValue={user.surname}/>

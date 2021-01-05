@@ -13,7 +13,7 @@ const Navbar = () => {
         try {
             const options = { headers: { Authorization: `Bearer ${user.token}` } };
 
-            await axios.post('http://localhost:3000/user/logout', options);
+            await axios.post('https://wisdomshare.herokuapp.com/user/logout', options);
 
         } catch (error) {
             console.log(error);
@@ -32,7 +32,7 @@ const Navbar = () => {
                     <Link to='/homepage'>Home</Link>
                     <Link to='/people'>People</Link>
 
-                    {<Link to='/' onClick={logout}>Logout</Link>}
+                    {<Link to='/login' onClick={logout}>Logout</Link>}
                 </div>
 
 

@@ -11,7 +11,7 @@ const Homepage = ({ dispatch, user }) => {
     const history = useHistory();
     const [posts, setPosts] = useState([]);
     const [value, setValue] = useState('');  // Para borrar los inputs una vez se ha producido el submit
-    const [api, setApi] = useState('http://localhost:3000/readallposts');
+    const [api, setApi] = useState('https://wisdomshare.herokuapp.com/readallposts');
     const imAdmin = user?.role === 'admin';
 
     const useInterval = (callback, delay) => {
@@ -49,7 +49,7 @@ const Homepage = ({ dispatch, user }) => {
                 categorie: event.target.categorie.value,
                 postedBy: user._id
             };
-            let res = await axios.post('http://localhost:3000/post', newPost, options);
+            let res = await axios.post('https://wisdomshare.herokuapp.com/post', newPost, options);
             setValue('');
             console.log(res.data)
         } catch (error) {
@@ -59,7 +59,7 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     const makeComment = (text, _id) => {
-        axios('http://localhost:3000/commentpost/' + _id
+        axios('https://wisdomshare.herokuapp.com/commentpost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -90,7 +90,7 @@ const Homepage = ({ dispatch, user }) => {
 
 
     const submitLike = (_id) => {
-        axios('http://localhost:3000/likepost/' + _id
+        axios('https://wisdomshare.herokuapp.com/likepost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -120,7 +120,7 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     const deletePost = (_id) => {
-        axios('http://localhost:3000/deletepost/' + _id
+        axios('https://wisdomshare.herokuapp.com/deletepost/' + _id
             , {
                 method: "delete",
                 headers: {
@@ -153,13 +153,13 @@ const Homepage = ({ dispatch, user }) => {
                 <div className='TLContainer'>
                     <div className="header"><h2>What are people talking about?</h2></div>
                     <div className="categoryBox">
-                    <select className= "selectCategory"onClick={(e) => setApi(e.target.value)}>
-                        <option selected type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
-                        <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
-                        <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
-                        <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
-                        <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
-                        <option type='category' name='category' value="http://localhost:3000/readcookingposts">Cooking</option>
+                    <select className= "selectCategory" onClick={(e) => setApi(e.target.value)}>
+                        <option selected type='category' name='category' value="https://wisdomshare.herokuapp.com/readallposts"  >All Posts</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readlifestyleposts" >Lifestyle</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readparentingposts">Parenting</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readnewsposts">News</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readtechposts">Techology</option>
+                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readcookingposts">Cooking</option>
                     </select>
                     </div>
                     <Scrollbars style={{ width: 1000, height: 600 }}>

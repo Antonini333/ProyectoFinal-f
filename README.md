@@ -66,7 +66,7 @@ _Tecnologías utilizadas en el proyecto_
 
 ## Agradecimientos 🎁
 
-* A GeeksHubs:registered:, por ofrecerme la posibilidad de cambiar mi vida laboral.
+* A GeeksHubs®, por ofrecerme la posibilidad de cambiar mi vida laboral.
 * A Sam, mi pareja, por aguantarme y confiar en mí durante todo este proceso. :hearts:
 * A mis amigos y familia, por las ausencias y lo monotemático.
 

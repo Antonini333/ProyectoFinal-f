@@ -1,4 +1,4 @@
-const { LOGIN, POSTS, ALL_USERS } = require('./types');
+const { LOGIN, POSTS, ALL_USERS, UPDATE } = require('./types');
 
 const initialState ={
     user: {},
@@ -13,6 +13,11 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 user: action.payload
             }
+            case UPDATE:
+                return{
+                    ...state,
+                    user: action.payload
+                }
             case POSTS:
                 return{
                     ...state,

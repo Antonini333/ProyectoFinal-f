@@ -5,7 +5,9 @@ import Homepage from './Containers/Homepage/Homepage';
 import Register from './Containers/Register/Register';
 import Navbar from './Components/Navbar/Navbar'
 import People from './Containers/People/People'
+import UpdateProfile from './Containers/UpdateProfile/UpdateProfile';
 import './App.css';
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
     <Route path= "/login" exact>
       <Login />
     </Route>
+
     <Route path= "/" exact>
       <Register />
     </Route>
@@ -23,10 +26,17 @@ function App() {
       <Homepage/> 
     </Route>
 
+    <Route path= "/update" exact>
+      <UpdateProfile/> 
+    </Route>
+
     <Route path= "/people" exact>
       <Navbar/>
       <People/> 
     </Route>
+
+    
+
     </BrowserRouter>
   );
 }

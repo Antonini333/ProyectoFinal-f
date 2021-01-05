@@ -6,7 +6,7 @@ import { Input } from 'antd';
 
 
 const Register = () => {
-
+    const history = useHistory();
     const clickRegister = async (event) => {
         event.preventDefault();
         try {
@@ -16,12 +16,11 @@ const Register = () => {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 age: event.target.age.value,
-                address: event.target.address.value
+                address: event.target.address.value,
+                bio: event.target.bio.value,
             }
-            let res = await axios.post('https://wisdomshare.herokuapp.com/user/register', body);
-            console.log(res.data)
-
-            useHistory.push('/login')
+            await axios.post('http://localhost:3000/user/register', body);
+            history.push('/login')
         } catch (error) {
             console.log(error);
         }
@@ -38,7 +37,8 @@ const Register = () => {
                 <Input className="inputText" type="email" name="email" placeholder="Email"/>
                 <Input className="inputText" type="password" name="password" placeholder="Password"/>
                 <Input className="inputText" type="age" name="age" placeholder="Age"/>
-                <Input className="inputText" type="address" name="address" placeholder="Address"/>
+                <Input className="inputText" type="address" name="address" placeholder="City, Country"/>
+                <Input className="inputText" type="bio" name="bio" placeholder="Tell something about you"/>
                 <button className="buttonRegister" type="submit"><h3>Sign up</h3></button>
             </form>
             <div className="alreadyRegistered">¿Already registered? 

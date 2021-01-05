@@ -43,7 +43,7 @@
 .userCardPhoto {
     height: 80%;
     width: 20%;
-    margin: 0 2% 0.5% 1%;
+    margin: 0 -7% 0.5% 2%;
 }
 
 .userCardPhoto img{
@@ -55,50 +55,28 @@
 }
 
 .followBox {
-    margin-left: 3%;
+    margin-left: 5%;
 }
 
-.followButton {
-    height: 3.5em;
-    border-radius: 50%;
-    background-image: linear-gradient(to left, rgb(179, 13, 170), rgb(78, 167, 206));
-    border: 0.3em solid #392a8bf5;
-    font-size: medium;
-}
-
-
-.newPost {
-    width: 50em;
-    height: 4.5em;
-    border-radius: 0.2em;
-    font-size: small;
-    margin-top: 1%;
-}
 
 .followButton {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
     width: 4em;
     height: 4em;
     font-size: small;
     border-radius: 1em;
-    color: rgba(255, 255, 255, 0.774);
-    background-color: #0602ff;
-    border: 0.2em outset #0a090aa9;
+    background-image: linear-gradient(to bottom, rgb(215, 10, 205), rgb(112, 120, 155));
+    border: 0.2em outset #2e285086;  
+    justify-content: center;
+    align-items: center;
+    transition: 0.1s;
 
 
 }
-
-.cardPost {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 95%;
-    margin: 1.5%;
-    border-radius: 0.5em;
-    padding: 0.125em;
-    font-size: small;
-    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #3b2852b4;
+.followButton:hover{
+    background-image: linear-gradient(to bottom, rgb(255, 7, 243), rgb(77, 226, 194));
+    border: 0.2em inset #fafaff69;  
+    transition: 0.1s
 }
+

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { POSTS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars';
@@ -7,10 +8,12 @@ import './Homepage.scss';
 
 
 const Homepage = ({ dispatch, user }) => {
+    const history = useHistory();
     const [posts, setPosts] = useState([]);
     const [value, setValue] = useState('');  // Para borrar los inputs una vez se ha producido el submit
-    const [api, setApi] = useState('https://wisdomshare.herokuapp.com/readallposts');
-    console.log(value)
+    const [api, setApi] = useState('http://localhost:3000/readallposts');
+    const [userValues, setUserValues] = useState(user)
+    
 
     const useInterval = (callback, delay) => {
         const savedCallback = useRef();
@@ -30,7 +33,6 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     useInterval(async (event) => {
-        console.log('Refreshing Timeline')
         let res = await axios.get(api)
         setPosts(res.data)
 
@@ -48,7 +50,7 @@ const Homepage = ({ dispatch, user }) => {
                 categorie: event.target.categorie.value,
                 postedBy: user._id
             };
-            let res = await axios.post('https://wisdomshare.herokuapp.com/post', newPost, options);
+            let res = await axios.post('http://localhost:3000/post', newPost, options);
             setValue('');
             console.log(res.data)
         } catch (error) {
@@ -58,7 +60,7 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     const makeComment = (text, _id) => {
-        axios('https://wisdomshare.herokuapp.com/commentpost/' + _id
+        axios('http://localhost:3000/commentpost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -89,7 +91,7 @@ const Homepage = ({ dispatch, user }) => {
 
 
     const submitLike = (_id) => {
-        axios('https://wisdomshare.herokuapp.com/likepost/' + _id
+        axios('http://localhost:3000/likepost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -113,6 +115,11 @@ const Homepage = ({ dispatch, user }) => {
             })
     }
 
+    let handleClick =(e) => {
+        e.preventDefault();
+        history.push('/update')
+    }
+
 
 
 
@@ -126,19 +133,21 @@ const Homepage = ({ dispatch, user }) => {
                     <div className='photoProfile'>
                         <img src={user.photo} alt="Your face here"></img></div>
                     <div className='infoProfile'><h4><div>{user.name}&nbsp;{user.surname}</div><div>Age: {user.age}</div><div>{user.address}</div></h4><div>"{user.bio}"</div></div>
+                   <div className="buttonUpdateBox"> <button className="buttonUpdate" onClick={handleClick}><h3>Update your profile</h3></button></div>
+                   <div className="followCount"><b>{user.followCount}</b> &nbsp;followers</div>
                 </div>
 
                 <div className='TLContainer'>
                     <div className="header"><h2>What are people talking about?</h2></div>
                     <div className="categoryBox">
                     <select className= "selectCategory"onClick={(e) => setApi(e.target.value)}>
-                        <option key={-1}>Choose Category</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readallposts"  >All Posts</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readlifestyleposts" >Lifestyle</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readparentingposts">Parenting</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readnewsposts">News</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readtechposts">Techology</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readcookingposts">Cooking</option>
+                        <option key={-1} selected disabled>Choose Category</option>
+                        <option type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
+                        <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
+                        <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
+                        <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
+                        <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
+                        <option type='category' name='category' value="http://localhost:3000/readcookingposts">Cooking</option>
                     </select>
                     </div>
                     <Scrollbars style={{ width: 1000, height: 600 }}>
@@ -177,7 +186,7 @@ const Homepage = ({ dispatch, user }) => {
                             <textarea onChange={event => setValue(event.target.value)} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
 
                             <select className="newPostChoose" type="categorie" name="categorie">
-                            <option key={-1}>Select your post category</option>
+                            <option key={-1} selected disabled>Select your post category</option>
                                 <option value="Lifestyle">Lifestyle</option>
                                 <option value="Parenting">Parenting</option>
                                 <option value="News">News</option>

@@ -1,4 +1,5 @@
-.mainregister{
+
+.mainupdate{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +11,7 @@
     background-position: center;
     
 }
-.registerBox {
+.updateBox {
     display:flex;
     flex-direction: column;
     place-items: center;
@@ -23,7 +24,7 @@
 
 }
 
-.titleRegister{
+.updateRegister{
     display:flex;
     flex-direction: column;
     place-items: center;
@@ -34,7 +35,7 @@
 
 }
 
-.inputText{
+.updateinputText{
 
     width: 80%;
     height: 1.8em;
@@ -45,7 +46,7 @@
 }
 
 
-.buttonRegister{
+.buttonUpdate{
     width: 85%;
     height: 3em;
     margin: 4% 1% 0% 8%;
@@ -53,27 +54,5 @@
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
     background-color: #d81eb397;
     border: 0.3em solid #c50a4877;
-}
-
-.alreadyRegistered{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 100%;
-    width: 60%;
-    padding: 3% 2% 0% 2%;
-    font-size: small;
-    color: white;
-}
-
-.linkToLogin{
-    color:  #d81eb3;
-    margin-left: 3%;
-    font-size: small;
-    transition: 0.2s;
-} 
-.linkToLogin:hover{
-    color: white;
-    transition: 0.2s;
 }
 

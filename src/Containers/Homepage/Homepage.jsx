@@ -113,15 +113,14 @@ const Homepage = ({ dispatch, user }) => {
             }).catch(err => {
                 console.log(err)
             })
-    }
+    }ddd
 
     let handleClick =(e) => {
         e.preventDefault();
         history.push('/update')
     }
 
-
-
+    
 
 
     return (

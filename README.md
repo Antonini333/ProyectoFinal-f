@@ -1,9 +1,8 @@
-# WisdomShare
+# WisdomShare! :bulb:
 
 La app nace como proyecto final para el bootcamp FSD de GeeksHubs que estoy terminando.
 La temática era libre, lo que terminó dando lugar a este proyecto, que intenta humildemente sintetizar lo que más destaco de las (pocas) RR.SS que uso habitualmente, Twitter y Reddit. 
 
-## Comenzando 🚀
 
 ## Comenzando 🚀
 
@@ -67,11 +66,11 @@ _Tecnologías utilizadas en el proyecto_
 
 ## Agradecimientos 🎁
 
-* A GeeksHubs, por ofrecerme la posibilidad de cambiar mi vida laboral.
-* A Sam, mi pareja, por aguantarme y confiar en mí durante todo este proceso. 
+* A GeeksHubs:registered:, por ofrecerme la posibilidad de cambiar mi vida laboral.
+* A Sam, mi pareja, por aguantarme y confiar en mí durante todo este proceso. :hearts:
 * A mis amigos y familia, por las ausencias y lo monotemático.
 
 
 
 ---
-⌨️ con :brain: y ❤️ por [Pablo Antonini](https://github.com/Antonini333) 😊
+[Pablo Antonini](https://github.com/Antonini333) 	:fountain_pen:

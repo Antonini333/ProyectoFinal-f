@@ -17,7 +17,7 @@ const Login = ({ dispatch }) => {
                 email: event.target.email.value,
                 password: event.target.password.value
             }
-            let res = await axios.post('https://wisdomshare.herokuapp.com/user/login', body);
+            let res = await axios.post('http://localhost:3000/user/login', body);
             dispatch({ type: LOGIN, payload: res.data })
             history.push('/homepage')
         } catch (error) {

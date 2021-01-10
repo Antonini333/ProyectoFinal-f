@@ -22,8 +22,8 @@ const UpdateProfile = ({ dispatch, user }) => {
                 bio: event.target.bio.value,
                 photo: event.target.photo.value,
             }
-           await axios.put('https://wisdomshare.herokuapp.com/user/update', body, options);
-           let res = await axios.get('https://wisdomshare.herokuapp.com/user', options);
+           await axios.put('http://localhost:3000/user/update', body, options);
+           let res = await axios.get('http://localhost:3000/user', options);
             dispatch({ type: UPDATE, payload: res.data })
             
            history.push('/homepage')

@@ -10,8 +10,9 @@ import './Homepage.scss';
 const Homepage = ({ dispatch, user }) => {
     const history = useHistory();
     const [posts, setPosts] = useState([]);
-    const [value, setValue] = useState('');  // Para borrar los inputs una vez se ha producido el submit
-    const [api, setApi] = useState('https://wisdomshare.herokuapp.com/readallposts');
+    const [value, setValue] = useState('');  
+    const [api, setApi] = useState('http://localhost:3000/readallposts');
+    const [comment, setComment] = useState('');
     const imAdmin = user?.role === 'admin';
 
     const useInterval = (callback, delay) => {
@@ -49,7 +50,7 @@ const Homepage = ({ dispatch, user }) => {
                 categorie: event.target.categorie.value,
                 postedBy: user._id
             };
-            await axios.post('https://wisdomshare.herokuapp.com/post', newPost, options);
+            await axios.post('http://localhost:3000/post', newPost, options);
             setValue('');
         } catch (error) {
             console.log(error)
@@ -58,7 +59,8 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     const makeComment = (text, _id) => {
-        axios('https://wisdomshare.herokuapp.com/commentpost/' + _id
+        
+        axios('http://localhost:3000/commentpost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -67,10 +69,12 @@ const Homepage = ({ dispatch, user }) => {
                 },
                 data: JSON.stringify({
 
-                    text: value
+                    text: comment
                 })
+                
             })
             .then(result => {
+
                 const newPost = posts.map(post => {
                     if (post._id === result._id) {
                         return result
@@ -79,7 +83,7 @@ const Homepage = ({ dispatch, user }) => {
                     }
                 })
                 setPosts(newPost)
-                setValue('');
+                setComment('')
 
             }).catch(err => {
                 console.log(err)
@@ -88,7 +92,7 @@ const Homepage = ({ dispatch, user }) => {
 
 
     const submitLike = (_id) => {
-        axios('https://wisdomshare.herokuapp.com/likepost/' + _id
+        axios('http://localhost:3000/likepost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -117,7 +121,7 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     const deletePost = (_id) => {
-        axios('https://wisdomshare.herokuapp.com/deletepost/' + _id
+        axios('http://localhost:3000/deletepost/' + _id
             , {
                 method: "delete",
                 headers: {
@@ -151,12 +155,12 @@ const Homepage = ({ dispatch, user }) => {
                     <div className="header"><h2>What are people talking about?</h2></div>
                     <div className="categoryBox">
                     <select className= "selectCategory" onClick={(e) => setApi(e.target.value)}>
-                        <option selected type='category' name='category' value="https://wisdomshare.herokuapp.com/readallposts"  >All Posts</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readlifestyleposts" >Lifestyle</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readparentingposts">Parenting</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readnewsposts">News</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readtechposts">Techology</option>
-                        <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readcookingposts">Cooking</option>
+                        <option selected type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
+                        <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
+                        <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
+                        <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
+                        <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
+                        <option type='category' name='category' value="http://localhost:3000/readcookingposts">Cooking</option>
                     </select>
                     </div>
                     <Scrollbars style={{ width: 1000, height: 600 }}>
@@ -178,13 +182,18 @@ const Homepage = ({ dispatch, user }) => {
 
                                             <button type="button" className="likeButton" onClick={() => { submitLike(post._id) }} ><b>+1 WP</b></button>
                                         </div>
-                                        <form onSubmit={(e) => {
-                                            e.preventDefault()
-                                            makeComment(e.target[0].value, post._id)
-                                        }}>
-                                            <input onChange={event => setValue(event.target.value)} className="inputComment" type="text" placeholder="Hit enter to add a comment " />
 
-                                        </form>
+                        <form onSubmit={(e) =>{
+                            e.preventDefault()
+                            setComment(e.target.value)
+                            makeComment(comment, post._id)
+                        }} >
+
+                            <input className="inputComment"  onChange={event => setComment(event.target.value)} value={comment}  placeholder="Hit enter to add a comment"></input>
+                           
+                        </form>
+                    
+
 
 
                                     </div>
@@ -195,7 +204,7 @@ const Homepage = ({ dispatch, user }) => {
                     <div className="newPostBox">
                         <form onSubmit={submitPost} >
 
-                            <textarea onChange={event => setValue(event.target.value)} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
+                            <textarea onChange={event => setValue(event.target.value)} value={value} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
 
                             <select className="newPostChoose" type="categorie" name="categorie">
                             <option key={-1} value="General" selected disabled>Select your post category</option>

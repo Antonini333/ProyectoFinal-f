@@ -19,7 +19,7 @@ const Register = () => {
                 address: event.target.address.value,
                 bio: event.target.bio.value,
             }
-            await axios.post('http://localhost:3000/user/register', body);
+            await axios.post('https://wisdomshare.herokuapp.com/user/register', body);
             history.push('/login')
         } catch (error) {
             console.log(error);

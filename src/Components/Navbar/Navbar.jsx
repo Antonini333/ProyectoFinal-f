@@ -1,3 +1,6 @@
+
+
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -27,12 +30,14 @@ const Navbar = () => {
                 <div className='menuCenter'>
 
                     <div className="logoBox">
-                        <img className="imgLogoHeader" src="https://www.clasesdeperiodismo.com/wp-content/uploads/2015/04/ideas.png" alt="logo"></img><h2>WisdomShare</h2>
+                        <img className="imgLogoHeader" src='https://i.imgur.com/CZZQE7o.png' alt="logo"></img>
+                        
                     </div>
-                    <Link to='/homepage'>Home</Link>
-                    <Link to='/people'>People</Link>
+                    <Link style={{ textDecoration: 'none' }} to='/homepage'><p>Home 🏠</p></Link>
+                    <Link style={{ textDecoration: 'none' }}to='/people'><p>People 👩‍👩‍👦‍👦</p> </Link>
 
-                    {<Link to='/login' onClick={logout}>Logout</Link>}
+                    {<Link style={{ textDecoration: 'none' }} to='/login' onClick={logout}><p>Logout 👋</p> </Link>}
+
                 </div>
 
 

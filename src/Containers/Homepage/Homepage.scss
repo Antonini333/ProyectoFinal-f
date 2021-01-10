@@ -1,7 +1,5 @@
-
-
-.homepage{
-    height: 90.8vh; 
+.homepage {
+    height: 90.8vh;
     width: 99w;
     display: flex;
     justify-content: center;
@@ -10,8 +8,6 @@
     background-image: url("https://khn.org/wp-content/uploads/sites/2/2019/08/GettyImages-928088582.jpg?w=1024");
     background-size: cover;
     background-position: center;
-    
-    
 }
 
 .mainContainer {
@@ -24,7 +20,7 @@
     margin-top: -12%;
 }
 
- .TLContainer{
+.TLContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,12 +28,9 @@
     width: 80%;
     height: 133%;
     margin: 14% 1% 1% 1%;
-    
-
 }
 
-/*Profile */
-.profile{
+.profile {
     display: flex;
     flex-direction: column;
     width: 25%;
@@ -46,9 +39,9 @@
     border: 0.3em solid rgba(206, 235, 226, 0.699);
     border-radius: 0.5em;
     background-color: #f49e42d7;
-
 }
-.headerProfile{
+
+.headerProfile {
     display: flex;
     justify-content: center;
     margin: 6%;
@@ -59,17 +52,16 @@
     height: 40%;
     margin: 2% 10% 2% 10%;
     border-radius: 50%;
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #16101d; 
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #16101d;
 }
-.photoProfile img{
+
+.photoProfile img {
     border-radius: 50%;
     max-width: 100%;
     max-height: 100%;
-    
-    
 }
 
-.infoProfile{
+.infoProfile {
     display: flex;
     flex-direction: column;
     line-height: 175%;
@@ -79,7 +71,7 @@
     overflow: auto;
 }
 
-.followCount{
+.followCount {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,33 +79,31 @@
     height: 10%;
     width: 100%;
     font-size: small;
-    
 }
 
-.categoryBox{
+.categoryBox {
     border: 0.2 solid black;
     height: 9%;
     width: 100%;
 }
-.selectCategory{
+
+.selectCategory {
     width: 98%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color:#f49e42e8;
+    background-color: #f49e42e8;
     background-image: linear-gradient(to bottom, #f49e42e8, rgb(150, 119, 54));
     font-weight: bold;
     padding: 1% 0 1% 42%;
     border: 0.2em solid rgba(229, 243, 238, 0.208);
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #3d4149; 
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #3d4149;
     border-radius: 0.2em;
-    
 }
 
-
-.header{
+.header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,45 +111,42 @@
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #403f4183 100%);
     background-color: #9510afd0;
     border: 0.3em solid rgba(229, 243, 238, 0.208);
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #07328d; 
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #07328d;
     width: 98%;
-    height:12%;
+    height: 12%;
     margin-left: -2%;
     border-radius: 0.2em;
 }
 
-.posts{
+.posts {
     display: flex;
     align-items: center;
     flex-direction: column-reverse;
-    width: 97%;    
+    width: 97%;
     background-color: #8a80846d;
     border: 0.3em solid #c50a4827;
     white-space: pre-line;
-    
-
-    
 }
 
 
-.newPostBox{    
+.newPostBox {
     display: flex;
     flex-direction: row;
     justify-content: center;
     color: #29171df0;
     border-radius: 0.2em;
     width: 97%;
-    height:32%;
+    height: 32%;
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #403f4183 100%);
     background-color: #063a9c;
     border: 0.3em solid rgba(229, 243, 238, 0.208);
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #07328d; 
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #07328d;
     margin-left: -2%;
-    
-} 
+
+}
 
 
-.newPost{
+.newPost {
     display: flex;
     flex-direction: row;
     border-radius: 0.2em;
@@ -168,76 +155,71 @@
     width: 50em;
     height: 3em;
     background-color: rgb(233, 225, 225);
-    border: 0.2em outset #2e285050;     
-    
-} 
+    border: 0.2em outset #2e285050;
+}
 
-.newPostChoose{
+.newPostChoose {
     width: 100%;
-    height: 17%;   
+    height: 17%;
     border-radius: 0.2em;
     font-size: small;
     margin-top: -0.5%;
     background-color: rgb(233, 225, 225);
-    border: 0.2em outset #2e28504b; 
-    color: rgb(99, 97, 97); 
-    
+    border: 0.2em outset #2e28504b;
+    color: rgb(99, 97, 97);
 }
 
-.newPostButton{
+.newPostButton {
     display: flex;
     flex-direction: row;
     align-items: center;
-justify-content: center;
+    justify-content: center;
     width: 100%;
-    height:2em;
+    height: 2em;
     border-radius: 0.5em;
-    margin: 0.5% 0 0.5% 0 ;   
+    margin: 0.5% 0 0.5% 0;
     background-image: linear-gradient(to bottom, rgb(215, 10, 205), rgb(112, 120, 155));
-    border: 0.2em outset #2e2850f5;    
+    border: 0.2em outset #2e2850f5;
     transition: 0.1s;
-     
-    
 }
-.newPostButton:hover{
+
+.newPostButton:hover {
     background-image: linear-gradient(to bottom, rgb(255, 7, 243), rgb(77, 226, 194));
-    border: 0.2em inset #fafaff69;  
+    border: 0.2em inset #fafaff69;
     color: rgb(77, 8, 83);
     transition: 0.1s
 }
 
 
-.cardPost{
+.cardPost {
     display: flex;
     flex-direction: column;
-    height:100%;
+    height: 100%;
     width: 95%;
     margin: 1.5%;
     border-radius: 0.5em;
     padding: 0.125em;
     font-size: small;
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #3b2852b4; 
-    
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #3b2852b4;
     border: 0.2em outset #ffffff2a;
 }
 
-.cardPostHeader{
+.cardPostHeader {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    height:20%;
+    align-items: center;
+    height: 20%;
     width: 99%;
     padding: 0.3%;
     line-height: 1.3em;
     background-color: rgb(29, 84, 247);
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #141414b4; 
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #141414b4;
     border-radius: 0.5em;
     border: 0.2em outset #2e28503a;
-
 }
 
-.cardPostText{
-    height:100%;
+.cardPostText {
+    height: 100%;
     width: 90%;
     padding: 2em;
     line-height: 1.5em;
@@ -245,26 +227,24 @@ justify-content: center;
     font-size: 1.1em;
 }
 
-.cardCommentHeader{
+.cardCommentHeader {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     height: 1.6em;
     padding: 0.3%;
     width: 53.8em;
     border-radius: 0.2em;
     background-color: rgb(80, 121, 241);
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #141414b4; 
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #141414b4;
     border: 0.2em outset #2e285059;
-    
-
 }
 
-.cardPostComment{
+.cardPostComment {
 
-    box-shadow: inset 0.063em 0.063em 2.125em  -0.438em #3b2852b4; 
-    height:100%;
+    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #3b2852b4;
+    height: 100%;
     width: 50.5em;
     padding: 2em;
     line-height: 1.5em;
@@ -273,92 +253,90 @@ justify-content: center;
 }
 
 
-.inputBox{
+.inputBox {
     display: flex;
     flex-direction: row;
-    align-items: center; 
-    height:30%;
-    width:100%;
+    align-items: center;
+    height: 30%;
+    width: 100%;
 }
 
 
 
-.inputComment{
+.inputComment {
     width: 49.4em;
-    height:2em;
+    height: 2em;
     margin-bottom: 0.5em;
     font-size: small;
     border-radius: 0 0.5em 0.5em 0;
     border: 0.2em outset #2e285073;
-
-    
 }
 
 
-.commentButton{
+.commentButton {
     width: 35.3em;
     height: 40%;
     font-size: small;
 }
 
-.likeBox{
+.likeBox {
     width: 4.6em;
     height: 3.9em;
     display: flex;
     justify-content: center;
     margin-top: 0.9%;
 }
+
 .likeButton {
     width: 100%;
     height: 70%;
     font-size: x-small;
     border-radius: 0.5em 0 0 0.5em;
     background-image: linear-gradient(to bottom, rgb(215, 10, 205), rgb(112, 120, 155));
-    border: 0.2em outset #2e285086;  
+    border: 0.2em outset #2e285086;
     justify-content: center;
     align-items: center;
     transition: 0.1s;
 }
-.likeButton:hover{
+
+.likeButton:hover {
     background-image: linear-gradient(to bottom, rgb(255, 7, 243), rgb(77, 226, 194));
-    border: 0.2em inset #fafaff69;  
+    border: 0.2em inset #fafaff69;
     transition: 0.1s
 }
 
 
-.buttonUpdate{
+.buttonUpdate {
     width: 85%;
     height: 3em;
-    border-radius: 1em;    
+    border-radius: 1em;
     background-image: linear-gradient(to bottom, rgba(215, 10, 205, 0.568), rgb(112, 120, 155));
     border: 0.2em outset #c50a4877;
 }
-.buttonUpdate:hover{
+
+.buttonUpdate:hover {
     background-image: linear-gradient(to bottom, rgb(255, 7, 243), rgb(77, 226, 194));
-    border: 0.2em inset #fafaff69;  
+    border: 0.2em inset #fafaff69;
     transition: 0.1s
 }
 
-.deleteBox{
+.deleteBox {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-direction: row;
 }
 
-.deleteButton{
+.deleteButton {
     width: 10%;
     height: 2.5em;
-    border-radius: 0.5em;    
+    border-radius: 0.5em;
     background-image: linear-gradient(to bottom, rgba(215, 10, 205, 0.568), rgb(112, 120, 155));
     border: 0.2em outset #c50a4877;
 }
-.deleteButton:hover{
+
+.deleteButton:hover {
     background-image: linear-gradient(to bottom, rgb(255, 7, 243), rgb(77, 226, 194));
-    border: 0.2em inset #fafaff69;  
+    border: 0.2em inset #fafaff69;
     transition: 0.1s
 }
-
-
-
-

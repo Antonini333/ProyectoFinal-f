@@ -129,11 +129,6 @@ const Homepage = ({ dispatch, user }) => {
                     "Authorization": `Bearer ${user.token}`
                 }
             })
-            .then(result => {
-                console.log(result)
-            }).catch(err => {
-                console.log(err)
-            })
     }
     
 

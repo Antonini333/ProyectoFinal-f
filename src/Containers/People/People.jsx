@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { ALL_USERS } from '../../Redux/types';
+import { UPDATE, ALL_USERS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars';
 import './People.scss';
 
 
 const People = ({ dispatch, user, users }) => {
-
-
-
+    
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
         axios.get('http://localhost:3000/users', options)
@@ -20,6 +18,15 @@ const People = ({ dispatch, user, users }) => {
     });
 
     const followUser = (_id) => {
+
+        if (user._id === _id) {
+            console.log("You can't follow yourself")
+
+        }if (user.following.some(item => item.UserId === _id)){
+            console.log("You already followed this user")
+       
+        }else{
+       
         axios('http://localhost:3000/user/follow/' + _id
             , {
                 method: "put",
@@ -28,14 +35,14 @@ const People = ({ dispatch, user, users }) => {
                     "Authorization": `Bearer ${user.token}`
                 }
             })
-            .then(result => {
-                console.log(result)
-            }).catch(err => {
+            const options = { headers: { Authorization: `Bearer ${user.token}` } };
+            axios.get('http://localhost:3000/user', options)
+            .then(user => dispatch({ type: UPDATE, payload: user.data}))
+            .catch(err => {
                 console.log(err)
             })
-
-            
-    }
+      
+    }}
 
 
     return (
@@ -51,7 +58,7 @@ const People = ({ dispatch, user, users }) => {
                                     <div className="userCardAge">{user.age}</div>
                             <div className="followBox">
 
-                                <button className="followButton" onClick={() => { followUser(user._id) }} > Follow</button>
+                                <button className="followButton" onClick={() => {followUser(user._id) }} > Follow</button>
                             </div>
                             <div className="userCardBio">{user.bio}</div>
                         </div>)}

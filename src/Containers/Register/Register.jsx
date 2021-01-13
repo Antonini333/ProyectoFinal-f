@@ -2,7 +2,6 @@ import React, { useState} from 'react';
 import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
 import spinner from '../../spinner.svg'
 import './Register.scss';
 import { Input } from 'antd';

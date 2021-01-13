@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { UPDATE, ALL_USERS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars';
+import Swal from 'sweetalert2';
 import './People.scss';
 
 
@@ -20,13 +21,20 @@ const People = ({ dispatch, user, users }) => {
     const followUser = (_id) => {
 
         if (user._id === _id) {
-            console.log("You can't follow yourself")
-
-        }if (user.following.some(item => item.UserId === _id)){
-            console.log("You already followed this user")
-       
-        }else{
-       
+            Swal.fire({
+                showConfirmButton: true,
+                icon: 'error',
+                text: 'You cannot follow yourself'
+            })
+            return;
+        } else if (user.following.some(item => item.UserId ===_id)) {
+            Swal.fire({
+                showConfirmButton: true,
+                icon: 'error',
+                text: 'You already followed this user'
+            })
+            return;       
+        }else{       
         axios('http://localhost:3000/user/follow/' + _id
             , {
                 method: "put",

@@ -32,6 +32,17 @@ const UpdateProfile = ({ dispatch, user }) => {
         }
     }
 
+    const clickDelete = async (event) => {
+        
+        try{
+            const options = { headers: { Authorization: `Bearer ${user.token}` } };
+            axios.delete('http://localhost:3000/user/delete', options)
+            history.push('/')
+        }catch (error){
+         console.log(error);
+        }
+    }
+
     return (
         <div className="mainupdate">
             <div></div>
@@ -45,6 +56,7 @@ const UpdateProfile = ({ dispatch, user }) => {
                 <Input className="updateinputText" type="bio" name="bio" defaultValue={user.bio}/>
                 <Input className="updateinputText" type="photo" name="photo" defaultValue={user.photo}/>
                 <button className="buttonUpdate" type="submit"><h3>Update your profile</h3></button>
+                <button className="buttonUpdate" onClick={(event) => { clickDelete() }}><h3>Delete Account</h3></button>
             </form>
         </div>
         <div></div>

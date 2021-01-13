@@ -4,12 +4,15 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { POSTS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars';
+import Swal from 'sweetalert2'
+import spinner from '../../spinner.svg'
 import './Homepage.scss';
 
 
 const Homepage = ({ dispatch, user }) => {
     const history = useHistory();
     const [posts, setPosts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [value, setValue] = useState('');  
     const [api, setApi] = useState('http://localhost:3000/readallposts');
     const [comment, setComment] = useState('');
@@ -35,6 +38,7 @@ const Homepage = ({ dispatch, user }) => {
     useInterval(async (event) => {
         let res = await axios.get(api)
         setPosts(res.data)
+        setIsLoading(false)
 
         dispatch({ type: POSTS, payload: res.data })
     }, 2000)
@@ -50,9 +54,17 @@ const Homepage = ({ dispatch, user }) => {
                 categorie: event.target.categorie.value,
                 postedBy: user._id
             };
+             if (event.target.categorie.value === "null") {
+                Swal.fire({
+                    showConfirmButton: true,
+                    icon: 'error',
+                    text: 'You must choose a categorie for your post'
+                })
+                return;       
+            }else{    
             await axios.post('http://localhost:3000/post', newPost, options);
             setValue('');
-        } catch (error) {
+        }} catch (error) {
             console.log(error)
         }
 
@@ -92,6 +104,7 @@ const Homepage = ({ dispatch, user }) => {
 
 
     const submitLike = (_id) => {
+
         axios('http://localhost:3000/likepost/' + _id
             , {
                 method: "put",
@@ -146,10 +159,15 @@ const Homepage = ({ dispatch, user }) => {
                    <div className="followCount"><b>{user.followCount}</b> &nbsp;followers</div>
                 </div>
 
+                
+
                 <div className='TLContainer'>
                     <div className="header"><h2>What are people talking about?</h2></div>
                     <div className="categoryBox">
-                    <select className= "selectCategory" onClick={(e) => setApi(e.target.value)}>
+                    <select className= "selectCategory" onClick={(e) =>{
+                            setApi(e.target.value)
+                            setIsLoading(true)
+                        }} >
                         <option selected type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
                         <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
                         <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
@@ -158,8 +176,17 @@ const Homepage = ({ dispatch, user }) => {
                         <option type='category' name='category' value="http://localhost:3000/readcookingposts">Cooking</option>
                     </select>
                     </div>
+                    
+                    
                     <Scrollbars style={{ width: 1000, height: 600 }}>
+                    {isLoading
+                        ?
+                        <div className="spinnerhomepage">
+                            <img src={spinner} alt="loading" />
+                        </div>
+                        : 
                         <div className="posts">
+                            
                             {posts?.map(post =>
                                 <div className="cardPost" key={post._id}>
                                     <div className="cardPostHeader"><h3>Posted at <em>{post.categorie}</em> by:</h3>  <b>{post.name} {post.surname} </b>{post.likeCount} Wisdom Points</div>
@@ -194,7 +221,7 @@ const Homepage = ({ dispatch, user }) => {
                                     </div>
 
                                 </div>)}
-                        </div>
+                        </div> }
                     </Scrollbars>
                     <div className="newPostBox">
                         <form onSubmit={submitPost} >
@@ -202,7 +229,7 @@ const Homepage = ({ dispatch, user }) => {
                             <textarea onChange={event => setValue(event.target.value)} value={value} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
 
                             <select className="newPostChoose" type="categorie" name="categorie">
-                            <option key={-1} value="General" selected disabled>Select your post category</option>
+                            <option key={-1} value="null" selected disabled>Select your post category</option>
                                 <option value="Lifestyle">Lifestyle</option>
                                 <option value="Parenting">Parenting</option>
                                 <option value="News">News</option>
@@ -214,7 +241,7 @@ const Homepage = ({ dispatch, user }) => {
                         </form>
                     </div>
 
-                </div>
+                </div> 
             </div>
         </div>
 

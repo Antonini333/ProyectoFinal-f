@@ -1,3 +1,5 @@
+
+
 .mainregister{
     display: flex;
     justify-content: center;
@@ -15,7 +17,7 @@
     flex-direction: column;
     place-items: center;
     width: 30%;
-    height: 75%;
+    height: 80%;
     size: medium;
     border: 0.3em solid rgba(64, 1, 96, 0.685);
     border-radius: 1.5em;
@@ -75,5 +77,13 @@
 .linkToLogin:hover{
     color: white;
     transition: 0.2s;
+}
+
+.spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8% 0 30% 0;
+
 }
 

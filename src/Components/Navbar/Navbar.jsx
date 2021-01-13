@@ -14,14 +14,17 @@ const Navbar = () => {
     const logout = async (event) => {
 
         try {
-            const options = { headers: { Authorization: `Bearer ${user.token}` } };
+            const options = { headers: { Authorization: `Bearer ${user?.token}` } };
 
-            await axios.post('http://localhost:3000/user/logout', options);
+            await axios.put('http://localhost:3000/user/logout', options);
 
         } catch (error) {
             console.log(error);
         }
     };
+
+
+    
 
     return (
         <>

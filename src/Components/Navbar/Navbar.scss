@@ -1,9 +1,7 @@
 
 .headerNav{
-    background-color: green;
     height: 9.2vh;
-    background-color:  rgb(74, 172, 197);
-    background-image: linear-gradient(to right, rgba(92, 25, 175, 0.893), rgba(47, 44, 226, 0.927));
+    background-color: #5e17eb;
     margin-top: -1em;
     
 }
@@ -11,16 +9,12 @@
 
 .logoBox{
     display: flex;
-    width: 23.7em;
+    width: 23em;
     height: 3.5em;
     margin: 0 5% 0 -9.4%;
     
 }
 
-.logoBox img {
-    max-width: 100%;
-    max-height: 98%;
-}
 
 .menuCenter{
     display: flex;
@@ -28,6 +22,7 @@
     align-items: center;
     justify-content: space-around;
     margin-top: 1em;
+    
 }
 
 p{

@@ -14,7 +14,7 @@ const Homepage = ({ dispatch, user }) => {
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [value, setValue] = useState('');
-    const [api, setApi] = useState('http://localhost:3000/readallposts');
+    const [api, setApi] = useState('https://wisdomshare.herokuapp.com/readallposts');
     const [comment, setComment] = useState('');
     const imAdmin = user?.role === 'admin';
 
@@ -62,7 +62,7 @@ const Homepage = ({ dispatch, user }) => {
                 })
                 return;
             } else {
-                await axios.post('http://localhost:3000/post', newPost, options);
+                await axios.post('https://wisdomshare.herokuapp.com/post', newPost, options);
                 setValue('');
                 setIsLoading(false)
             }
@@ -74,7 +74,7 @@ const Homepage = ({ dispatch, user }) => {
 
     const makeComment = (text, _id) => {
 
-        axios('http://localhost:3000/commentpost/' + _id
+        axios('https://wisdomshare.herokuapp.com/commentpost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -107,7 +107,7 @@ const Homepage = ({ dispatch, user }) => {
 
     const submitLike = (_id) => {
 
-        axios('http://localhost:3000/likepost/' + _id
+        axios('https://wisdomshare.herokuapp.com/likepost/' + _id
             , {
                 method: "put",
                 headers: {
@@ -116,7 +116,6 @@ const Homepage = ({ dispatch, user }) => {
                 }
             })
             .then(result => {
-                    console.log(result)
             
             }).catch(err => {
                 console.log(err)
@@ -130,7 +129,7 @@ const Homepage = ({ dispatch, user }) => {
     }
 
     const deletePost = (_id) => {
-        axios('http://localhost:3000/deletepost/' + _id
+        axios('https://wisdomshare.herokuapp.com/deletepost/' + _id
             , {
                 method: "delete",
                 headers: {
@@ -164,12 +163,12 @@ const Homepage = ({ dispatch, user }) => {
                             setApi(e.target.value)
                             setIsLoading(true)
                         }} >
-                            <option selected type='category' name='category' value="http://localhost:3000/readallposts"  >All Posts</option>
-                            <option type='category' name='category' value="http://localhost:3000/readlifestyleposts" >Lifestyle</option>
-                            <option type='category' name='category' value="http://localhost:3000/readparentingposts">Parenting</option>
-                            <option type='category' name='category' value="http://localhost:3000/readnewsposts">News</option>
-                            <option type='category' name='category' value="http://localhost:3000/readtechposts">Techology</option>
-                            <option type='category' name='category' value="http://localhost:3000/readcookingposts">Cooking</option>
+                            <option selected type='category' name='category' value="https://wisdomshare.herokuapp.com/readallposts"  >All Posts</option>
+                            <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readlifestyleposts" >Lifestyle</option>
+                            <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readparentingposts">Parenting</option>
+                            <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readnewsposts">News</option>
+                            <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readtechposts">Technology</option>
+                            <option type='category' name='category' value="https://wisdomshare.herokuapp.com/readcookingposts">Cooking</option>
                         </select>
                     </div>
 
@@ -225,7 +224,7 @@ const Homepage = ({ dispatch, user }) => {
                             <textarea onChange={event => setValue(event.target.value)} value={value} className="newPost" type="text" name='text' placeholder="And you? What you're thinking about?"></textarea>
 
                             <select className="newPostChoose" type="categorie" name="categorie">
-                                <option key={-1} value="null" selected disabled>Select your post category</option>
+                                <option key={-1} value="null" selected>Select your post category</option>
                                 <option value="Lifestyle">Lifestyle</option>
                                 <option value="Parenting">Parenting</option>
                                 <option value="News">News</option>

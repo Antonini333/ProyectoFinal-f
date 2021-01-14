@@ -59,15 +59,12 @@
 }
 
 .photoProfile {
-    border: 0.3em solid rgb(194, 157, 46);
+    display: flex;
+    justify-content: center;
     height: 40%;
-    margin: 2% 10% 2% 10%;
-    border-radius: 50%;
-    box-shadow: inset 0.063em 0.063em 2.125em -0.438em #16101d;
 }
 
 .photoProfile img {
-    border-radius: 50%;
     max-width: 100%;
     max-height: 100%;
 }
@@ -112,6 +109,7 @@
     border: 0.2em solid rgba(229, 243, 238, 0.208);
     box-shadow: inset 0.063em 0.063em 2.125em -0.438em #3d4149;
     border-radius: 0.2em;
+    margin-left: 0.1em;
 }
 
 .header {
@@ -134,9 +132,10 @@
     align-items: center;
     flex-direction: column-reverse;
     width: 97%;
-    background-color: #8a80846d;
+    background-color: #e6d3e381;
     border: 0.3em solid #c50a4827;
     white-space: pre-line;
+
 }
 
 
@@ -149,7 +148,7 @@
     width: 97%;
     height: 32%;
     background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #403f4183 100%);
-    background-color: #063a9c;
+    background-color: #9510afd0;
     border: 0.3em solid rgba(229, 243, 238, 0.208);
     box-shadow: inset 0.063em 0.063em 2.125em -0.438em #07328d;
     margin-left: -2%;
@@ -165,7 +164,7 @@
     margin: 1% 0;
     width: 50em;
     height: 3em;
-    background-color: rgb(233, 225, 225);
+    background-color: rgba(233, 225, 225, 0.781);
     border: 0.2em outset #2e285050;
 }
 
@@ -233,9 +232,9 @@
     height: 100%;
     width: 90%;
     padding: 2em;
-    line-height: 1.5em;
-    margin-bottom: 0em;
-    font-size: 1.1em;
+    line-height: 1.8em;
+    font-size: 1.125em;
+    font-weight: 500;
 }
 
 .cardCommentHeader {

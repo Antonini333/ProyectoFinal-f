@@ -48,6 +48,25 @@ npm start
 
 * [NETLIFY](https://wisdomshare.netlify.app/)
 
+### Quick peep :eyes:
+- #### Register
+![](src/img/Register.gif)
+
+- #### Posting
+![](src/img/Posting.gif)
+
+- #### Post-Comments
+![](src/img/Post-Comments.gif)
+
+- #### Categories
+![](src/img/Categories.gif)
+
+- #### Updating Profile
+![](src/img/Updating-profile.gif)
+
+- #### People
+![](src/img/People.gif)
+
 
 ## Construido con 🛠️
 

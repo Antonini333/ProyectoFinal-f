@@ -37,19 +37,22 @@
     width: 97%;
     height: 25%;
     margin-bottom: 2%;
-    background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5b 100%);
-    background-color: #d81e5b;
-    border: 0.5em solid #c50a488c;
+    background: linear-gradient(180deg, #ebd0d06b 0%, #ebd0d06b 21%, #d81e5cae 100%);
+    background-color: #d81e5c8c;
+    border: 0.5em solid #b9b8b92f;
 }
 
 .userCardPhoto {
+    display:flex;
+    justify-content: center;
     height: 80%;
     width: 20%;
-    margin: 0 -7% 0.5% 2%;
+
+
 }
 
 .userCardPhoto img{
-    max-width: 100%;
+    max-width: 50%;
  max-height: 100%;
 }
 .userCardBio{

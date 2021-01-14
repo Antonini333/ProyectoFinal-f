@@ -4,19 +4,22 @@ import { connect } from 'react-redux';
 import { UPDATE_FOLLOW, ALL_USERS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars';
 import Swal from 'sweetalert2/src/sweetalert2.js'
+import spinner from '../../spinner.svg'
 import './People.scss';
 
 
 const People = ({ dispatch, user, users }) => {
+    const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
         axios.get('https://wisdomshare.herokuapp.com/users', options)
 
-            .then(users => dispatch({ type: ALL_USERS, payload: users.data }))
+            .then(users => dispatch({ type: ALL_USERS, payload: users.data }), setIsLoading(false))
+            
             .catch(error => console.log())
 
-    });
+    },[user.token, dispatch]);
 
     const followUser = async (_id) => {
  
@@ -57,9 +60,18 @@ const People = ({ dispatch, user, users }) => {
       
     }}
 
+    
+
 
     return (
+
         <div className='people'>
+            {isLoading
+        ?
+        <div className="spinner">
+            <img src={spinner} alt="loading" />
+        </div>
+        :
             <div className="usersContainer">
                 <Scrollbars style={{ width: 1200, height: 425 }}>
                     {users?.map(user =>
@@ -77,7 +89,7 @@ const People = ({ dispatch, user, users }) => {
                         </div>)}
 
                 </Scrollbars>
-            </div>
+            </div> }
         </div>
 
 

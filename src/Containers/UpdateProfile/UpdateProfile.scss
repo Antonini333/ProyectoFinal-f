@@ -1,3 +1,4 @@
+@import '~@sweetalert2/theme-dark/dark.scss';
 
 .mainupdate{
     display: flex;
@@ -5,7 +6,7 @@
     align-items: center;
     flex-direction: row;
     background-image: url("https://khn.org/wp-content/uploads/sites/2/2019/08/GettyImages-928088582.jpg?w=1024");
-    height: 100vh;
+    height: 90.8vh;
     width: 100vw;
     background-size: cover;
     background-position: center;
@@ -16,7 +17,7 @@
     flex-direction: column;
     place-items: center;
     width: 30%;
-    height: 80%;
+    height: 85%;
     size: medium;
     border: 0.3em solid rgba(64, 1, 96, 0.685);
     border-radius: 1.5em;

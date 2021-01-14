@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { UPDATE, ALL_USERS } from '../../Redux/types';
+import { UPDATE_FOLLOW, ALL_USERS } from '../../Redux/types';
 import { Scrollbars } from 'rc-scrollbars';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import './People.scss';
 
 
@@ -11,31 +11,33 @@ const People = ({ dispatch, user, users }) => {
     
     useEffect(() => {
         const options = { headers: { Authorization: `Bearer ${user.token}` } };
-        axios.get('http://localhost:3000/users', options)
+        axios.get('https://wisdomshare.herokuapp.com/users', options)
 
             .then(users => dispatch({ type: ALL_USERS, payload: users.data }))
             .catch(error => console.log())
 
     });
 
-    const followUser = (_id) => {
-
+    const followUser = async (_id) => {
+ 
         if (user._id === _id) {
             Swal.fire({
-                showConfirmButton: true,
+                showConfirmButton: false,
+                timer: 1000,
                 icon: 'error',
                 text: 'You cannot follow yourself'
             })
             return;
-        } else if (user.following.some(item => item.UserId ===_id)) {
+        } else if (user.following.some(item => item.UserId === _id)) {
             Swal.fire({
-                showConfirmButton: true,
-                icon: 'error',
+                showConfirmButton: false,
+                icon: 'info',
+                timer: 1000,
                 text: 'You already followed this user'
             })
             return;       
         }else{       
-        axios('http://localhost:3000/user/follow/' + _id
+       await axios('https://wisdomshare.herokuapp.com/user/follow/' + _id
             , {
                 method: "put",
                 headers: {
@@ -43,12 +45,15 @@ const People = ({ dispatch, user, users }) => {
                     "Authorization": `Bearer ${user.token}`
                 }
             })
-            const options = { headers: { Authorization: `Bearer ${user.token}` } };
-            axios.get('http://localhost:3000/user', options)
-            .then(user => dispatch({ type: UPDATE, payload: user.data}))
-            .catch(err => {
-                console.log(err)
+        .then(res => {
+            dispatch({type: UPDATE_FOLLOW, payload: res.data})
+            Swal.fire({
+                showConfirmButton: false,
+                timer: 2000,
+                icon: 'success',
+                text: `User followed!`
             })
+        }).catch(err => console.log(err))
       
     }}
 

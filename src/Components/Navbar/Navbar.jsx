@@ -1,23 +1,17 @@
-
-
-
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Navbar.scss';
 
-const Navbar = () => {
-
-    const user = useSelector(state => state.user)
+const Navbar = ({user}) => {
 
     const logout = async (event) => {
 
         try {
-            const options = { headers: { Authorization: `Bearer ${user?.token}` } };
+            const options = { headers: { Authorization: `Bearer ${user.token}` } };
 
-            await axios.put('http://localhost:3000/user/logout', options);
-
+            await axios.put('https://wisdomshare.herokuapp.com/user/logout', options);
         } catch (error) {
             console.log(error);
         }
@@ -33,7 +27,7 @@ const Navbar = () => {
                 <div className='menuCenter'>
 
                     <div className="logoBox">
-                        <img className="imgLogoHeader" src='https://i.imgur.com/CZZQE7o.png' alt="logo"></img>
+                        <img className="imgLogoHeader" src='https://i.imgur.com/3eiP67E.png' alt="logo"></img>
                         
                     </div>
                     <Link style={{ textDecoration: 'none' }} to='/homepage'><p>Home 🏠</p></Link>
@@ -52,4 +46,12 @@ const Navbar = () => {
 
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+
+    return {
+        user: state.user,
+    }
+}
+
+
+export default connect(mapStateToProps)(Navbar);

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Login.scss';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import { Input } from 'antd';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../Redux/types';
@@ -11,18 +12,31 @@ const Login = ({ dispatch }) => {
     const history = useHistory();
     const clickLogin = async (event) => {
         event.preventDefault();
-        try {
             
             const body = {
                 email: event.target.email.value,
                 password: event.target.password.value
             }
-            let res = await axios.post('http://localhost:3000/user/login', body);
-            dispatch({ type: LOGIN, payload: res.data })
-            history.push('/homepage')
-        } catch (error) {
-            console.log(error);
-        }
+            await axios.post('https://wisdomshare.herokuapp.com/user/login', body)
+            .then(res => {
+                dispatch({ type: LOGIN, payload: res.data })
+                Swal.fire({
+                    showConfirmButton: false,
+                    timer: 3000,
+                    icon: 'success',
+                    title: `Welcome back, ${res.data.name}!`,
+                    text: `It's nice to see you again 🤗 `
+                })
+
+                setTimeout(() => {
+                    history.push('/homepage')
+                }, 1500)
+            }).catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Wrong credentials'
+                })
+            });
     }
 
     return (

@@ -27,6 +27,7 @@ function App() {
     </Route>
 
     <Route path= "/update" exact>
+    <Navbar/>
       <UpdateProfile/> 
     </Route>
 

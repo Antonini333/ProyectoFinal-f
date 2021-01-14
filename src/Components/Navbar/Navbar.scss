@@ -3,7 +3,7 @@
     background-color: green;
     height: 9.2vh;
     background-color:  rgb(74, 172, 197);
-    background-image: linear-gradient(to right, rgb(87, 190, 216), rgb(30, 91, 182));
+    background-image: linear-gradient(to right, rgba(92, 25, 175, 0.893), rgba(47, 44, 226, 0.927));
     margin-top: -1em;
     
 }
@@ -11,15 +11,15 @@
 
 .logoBox{
     display: flex;
-    width: 20%;
-    height: 9.2vh;
-    margin-left: -9%;
+    width: 23.7em;
+    height: 3.5em;
+    margin: 0 5% 0 -9.4%;
     
 }
 
 .logoBox img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 98%;
 }
 
 .menuCenter{
@@ -31,7 +31,7 @@
 }
 
 p{
-    color: black;
+    color: #271603d7;
+
     font-size: large;
-    font-weight: bold;
 }

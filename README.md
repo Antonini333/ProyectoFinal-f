@@ -45,6 +45,10 @@ npm start
 
 
 ## Echa un vistazo a la app en producción 🚀
+### Puedes usar esta cuenta de administrador para ver las extra features 
+
+ #### User: admin@admin.com
+ #### Password: GeeksHubs!333
 
 * [NETLIFY](https://wisdomshare.netlify.app/)
 

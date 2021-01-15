@@ -1,6 +1,6 @@
 # WisdomShare! :bulb:
 
-La app nace como proyecto final para el bootcamp FSD de GeeksHubs que estoy terminando.
+Esta Desktop App nace como proyecto final para el bootcamp FSD de GeeksHubs que estoy terminando de cursar.
 La temática era libre, lo que terminó dando lugar a este proyecto, que intenta humildemente sintetizar lo que más destaco de las (pocas) RR.SS que uso habitualmente, Twitter y Reddit. 
 
 
